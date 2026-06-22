@@ -112,7 +112,7 @@ export default function CinematicLayer({ particleCount = 140 }) {
       map: spriteTexture,
       vertexColors: true,
       transparent: true,
-      opacity: 0.85,
+      opacity: 0.32,
       depthWrite: false,
       blending: THREE.AdditiveBlending,
       sizeAttenuation: true,

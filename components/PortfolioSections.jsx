@@ -5,7 +5,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import styles from "./PortfolioSections.module.css";
 
-// Register ScrollTrigger client-side
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -14,187 +13,176 @@ export default function PortfolioSections() {
   const containerRef = useRef(null);
 
   useEffect(() => {
+    // Basic GSAP fade animations for elements inside cards when they enter viewport
     const ctx = gsap.context(() => {
-      // Fade in section headers as they enter viewport
-      const sections = gsap.utils.toArray(`.${styles.section}`);
-      sections.forEach((sec) => {
-        const header = sec.querySelector(`.${styles.header}`);
-        const content = sec.querySelector(`.${styles.grid}, .${styles.aboutText}, .${styles.contactForm}`);
+      const cards = gsap.utils.toArray(`.${styles.card}`);
+      cards.forEach((card) => {
+        const eyebrow = card.querySelector(`.${styles.eyebrow}`);
+        const title = card.querySelector(`.${styles.title}`);
+        const innerContent = card.querySelector(`.${styles.lead}, .${styles.skillGrid}, .${styles.projList}, .${styles.contactGrid}`);
 
-        if (header) {
-          gsap.fromTo(
-            header,
-            { opacity: 0, y: 30 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              scrollTrigger: {
-                trigger: sec,
-                start: "top 80%",
-                toggleActions: "play none none reverse",
-              },
-            }
-          );
-        }
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: card,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        });
 
-        if (content) {
-          gsap.fromTo(
-            content,
-            { opacity: 0, y: 40 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 1,
-              scrollTrigger: {
-                trigger: sec,
-                start: "top 75%",
-                toggleActions: "play none none reverse",
-              },
-            }
-          );
-        }
+        if (eyebrow) tl.fromTo(eyebrow, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.6 });
+        if (title) tl.fromTo(title, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, "-=0.45");
+        if (innerContent) tl.fromTo(innerContent, { opacity: 0, y: 25 }, { opacity: 1, y: 0, duration: 0.8 }, "-=0.45");
       });
     }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
-  const skillsList = [
-    { name: "JavaScript", type: "Frontend", level: "Intermediate", glow: "orange" },
-    { name: "Python", type: "Scripting & Backend", level: "Intermediate", glow: "blue" },
-    { name: "Java", type: "Object Oriented Programming", level: "Intermediate", glow: "orange" },
-    { name: "C Language", type: "Systems Programming", level: "Fundamental", glow: "blue" },
-    { name: "HTML5", type: "Web Structure", level: "Advanced", glow: "orange" },
-    { name: "CSS3 / Modern Layouts", type: "Web Styling & Motion", level: "Advanced", glow: "blue" },
-  ];
-
   const projectsList = [
     {
       title: "Spotify Web Player UI Clone",
-      category: "Frontend Application",
-      description: "A pixel-perfect UI/UX recreation of the Spotify web player desktop experience. Features a custom playback control interface, interactive side navigation libraries, and fluid grid layouts designed for smooth navigation.",
-      tech: ["HTML5", "CSS3 / Flexbox", "JavaScript", "UI Design"],
-      link: "#",
-      glow: "orange",
+      category: "Frontend Clone",
+      period: "Recent Project",
+      description: "A pixel-perfect UI/UX recreation of the Spotify web player desktop experience. Designed to replicate the desktop player with custom media play controls, interactive side navigation libraries, and fluid layout responsiveness.",
+      tech: ["HTML5", "CSS3 / Flexbox", "JavaScript", "Responsive Design"],
+      link: "https://github.com/Satyam2307",
     },
     {
       title: "Sidebar Navigation Menu",
-      category: "Interaction & Component Design",
-      description: "An elegant, interactive navigation drawer with smooth state-based transition animations. Leverages modern CSS transitions, flexbox alignments, active-state indicator track tracking, and collapsed layouts for compact viewports.",
+      category: "Component Design",
+      period: "Recent Project",
+      description: "An elegant, interactive navigation drawer with smooth state transitions. Leverages modern CSS variables, flexbox alignments, active-state indicator track tracking, and collapsed layouts for compact viewports.",
       tech: ["HTML5", "CSS Variables", "JavaScript", "Micro-interactions"],
-      link: "#",
-      glow: "blue",
+      link: "https://github.com/Satyam2307",
     },
     {
       title: "Creative Storytelling Website",
-      category: "Immersive Web Experience",
-      description: "A storytelling project designed to engage audiences using flow layouts, parallax scroll elements, and cinematic visual transitions. Blends interactive reading with visual animations and high-contrast styling.",
-      tech: ["HTML5", "CSS Animation", "JavaScript", "Creative Direction"],
-      link: "#",
-      glow: "orange",
+      category: "Immersive Web Design",
+      period: "Recent Project",
+      description: "A narrative storytelling project built to engage users through scroll-driven flow layouts, custom graphics alignment, and cinematic visual transitions. Blends interactive reading with rich typography.",
+      tech: ["HTML5", "CSS Keyframes", "JavaScript", "Creative Direction"],
+      link: "https://github.com/Satyam2307",
     },
   ];
 
   return (
-    <div ref={containerRef} className={styles.container}>
-      {/* 1. About / Vision Section */}
-      <section id="about" className={`${styles.section} ${styles.aboutSection}`}>
-        <div className={styles.sectionInner}>
-          <div className={styles.header}>
-            <span className={styles.eyebrow}>01 / Vision & Craft</span>
-            <h2 className={styles.title}>The Craft of Interfaces</h2>
-          </div>
-          <p className={styles.aboutText}>
-            Passionate about web development and UI design, I create responsive, interactive, 
-            and visually rich web applications. My focus lies at the intersection of robust programming 
-            and aesthetic layout design—delivering digital spaces that feel alive, intuitive, and memorable. 
-            I build to create experiences that are not just used, but felt.
+    <div id="work" ref={containerRef} className={styles.wrap}>
+      <div className={styles.inner}>
+        
+        {/* Card 01: About — Profile */}
+        <section className={styles.card}>
+          <span className={styles.cardNum} aria-hidden="true">01</span>
+          <p className={styles.eyebrow}>About — Profile</p>
+          <h2 className={styles.title}>Who I Am</h2>
+          <p className={styles.lead}>
+            Aspiring Software Engineer passionate about <span className={styles.hot}>web development and UI design</span>. 
+            I focus on bridging aesthetic visual layouts with high-performance interactive engineering. 
+            I build responsive, clean user interfaces using C, Python, Java, and modern web standards. 
+            My goal is to craft digital products that blend clean, structured code with immersive, polished user experiences.
           </p>
-        </div>
-      </section>
+          <ul className={styles.pills}>
+            <li className={styles.pill}>Software Engineer</li>
+            <li className={styles.pill}>Frontend Dev</li>
+            <li className={styles.pill}>UI Designer</li>
+            <li className={styles.pill}>Creative Coder</li>
+            <li className={styles.pill}>Problem Solver</li>
+          </ul>
+        </section>
 
-      {/* 2. Skills Section */}
-      <section id="skills" className={styles.section}>
-        <div className={styles.sectionInner}>
-          <div className={styles.header}>
-            <span className={styles.eyebrow}>02 / Capabilities</span>
-            <h2 className={styles.title}>Technological Stack</h2>
+        {/* Card 02: Skills — Stack */}
+        <section className={styles.card}>
+          <span className={styles.cardNum} aria-hidden="true">02</span>
+          <p className={styles.eyebrow}>Skills — Stack</p>
+          <h2 className={styles.title}>Technical Skills</h2>
+          <div className={styles.skillGrid}>
+            <div className={styles.skillGroup}>
+              <p className={styles.skillLabel}>Languages</p>
+              <ul className={styles.pills}>
+                <li className={styles.pill}>Java</li>
+                <li className={styles.pill}>C Language</li>
+                <li className={styles.pill}>Python</li>
+                <li className={styles.pill}>JavaScript</li>
+              </ul>
+            </div>
+            
+            <div className={styles.skillGroup}>
+              <p className={styles.skillLabel}>Web & Structure</p>
+              <ul className={styles.pills}>
+                <li className={styles.pill}>HTML5</li>
+                <li className={styles.pill}>CSS3</li>
+                <li className={styles.pill}>ES6+ JavaScript</li>
+              </ul>
+            </div>
+
+            <div className={styles.skillGroup}>
+              <p className={styles.skillLabel}>Styling & Animation</p>
+              <ul className={styles.pills}>
+                <li className={styles.pill}>Modern Flexbox / Grid</li>
+                <li className={styles.pill}>CSS Modules</li>
+                <li className={styles.pill}>GSAP</li>
+                <li className={styles.pill}>Transitions & Keyframes</li>
+              </ul>
+            </div>
+
+            <div className={styles.skillGroup}>
+              <p className={styles.skillLabel}>Tools & Ecosystem</p>
+              <ul className={styles.pills}>
+                <li className={styles.pill}>Git & GitHub</li>
+                <li className={styles.pill}>VS Code</li>
+                <li className={styles.pill}>npm / Node Package Manager</li>
+                <li className={styles.pill}>Next.js / React</li>
+              </ul>
+            </div>
           </div>
-          <div className={styles.grid}>
-            {skillsList.map((skill, idx) => (
-              <div
-                key={idx}
-                className={`${styles.card} ${styles.skillCard} ${
-                  skill.glow === "orange" ? styles.glowOrange : styles.glowBlue
-                }`}
-              >
-                <div className={styles.cardHeader}>
-                  <h3 className={styles.skillName}>{skill.name}</h3>
-                  <span className={styles.skillLevel}>{skill.level}</span>
+        </section>
+
+        {/* Card 03: Work — Projects */}
+        <section className={`${styles.card} ${styles.flow}`}>
+          <span className={styles.cardNum} aria-hidden="true">03</span>
+          <p className={styles.eyebrow}>Work — Projects</p>
+          <h2 className={styles.title}>Projects</h2>
+          
+          <div className={styles.projList}>
+            {projectsList.map((proj, idx) => (
+              <div key={idx} className={styles.proj}>
+                <div className={styles.projHead}>
+                  <h3 className={styles.projCompany}>{proj.title}</h3>
+                  <span className={styles.projPeriod}>{proj.period}</span>
                 </div>
-                <p className={styles.skillType}>{skill.type}</p>
-                <div className={styles.progressBarWrap}>
-                  <div 
-                    className={styles.progressBar} 
-                    style={{ 
-                      width: skill.level === "Advanced" ? "90%" : skill.level === "Intermediate" ? "75%" : "55%" 
-                    }}
-                  />
-                </div>
+                <p className={styles.projRole}>{proj.category}</p>
+                <ul className={styles.projItems}>
+                  <li>{proj.description}</li>
+                </ul>
+                <ul className={styles.pills} style={{ marginTop: "1rem" }}>
+                  {proj.tech.map((t, tIdx) => (
+                    <li key={tIdx} className={styles.pill}>
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href={proj.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={styles.projLink}
+                >
+                  View on GitHub
+                  <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+                    <path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"></path>
+                  </svg>
+                </a>
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* 3. Projects Section */}
-      <section id="projects" className={styles.section}>
-        <div className={styles.sectionInner}>
-          <div className={styles.header}>
-            <span className={styles.eyebrow}>03 / Creations</span>
-            <h2 className={styles.title}>Selected Work</h2>
-          </div>
-          <div className={styles.grid}>
-            {projectsList.map((proj, idx) => (
-              <article
-                key={idx}
-                className={`${styles.card} ${styles.projectCard} ${
-                  proj.glow === "orange" ? styles.glowOrange : styles.glowBlue
-                }`}
-              >
-                <span className={styles.projectCategory}>{proj.category}</span>
-                <h3 className={styles.projectTitle}>{proj.title}</h3>
-                <p className={styles.projectDesc}>{proj.description}</p>
-                
-                <div className={styles.techTags}>
-                  {proj.tech.map((t, tIdx) => (
-                    <span key={tIdx} className={styles.tag}>
-                      {t}
-                    </span>
-                  ))}
-                </div>
+        {/* Card 04: Contact — Conversation */}
+        <section id="contact" className={`${styles.card} ${styles.flow}`}>
+          <span className={styles.cardNum} aria-hidden="true">04</span>
+          <p className={styles.eyebrow}>Collaboration — Reach Out</p>
+          <h2 className={styles.title}>Start a Conversation</h2>
 
-                <a href={proj.link} className={styles.projectLink} aria-label={`View details of ${proj.title}`}>
-                  <span>View Project</span>
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </a>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Contact Section */}
-      <section id="contact" className={`${styles.section} ${styles.contactSection}`}>
-        <div className={styles.sectionInner}>
-          <div className={styles.header}>
-            <span className={styles.eyebrow}>04 / Collaboration</span>
-            <h2 className={styles.title}>Start a Conversation</h2>
-          </div>
-          <div className={styles.contactContent}>
+          <div className={styles.contactGrid}>
             <div className={styles.contactDetails}>
               <p className={styles.contactPrompt}>
                 Have an idea, project, or opportunity you want to collaborate on? Let's build something exceptional.
@@ -234,8 +222,9 @@ export default function PortfolioSections() {
               </button>
             </form>
           </div>
-        </div>
-      </section>
+        </section>
+
+      </div>
 
       {/* Footer */}
       <footer className={styles.footer}>

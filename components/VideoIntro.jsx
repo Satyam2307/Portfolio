@@ -66,7 +66,6 @@ export default function VideoIntro({
 
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
-  const [needsPrompt, setNeedsPrompt] = useState(false);
 
   /* ---------- Start Intro With Sound from 0:00 ---------- */
   const startIntroWithSound = useCallback(() => {
@@ -79,7 +78,6 @@ export default function VideoIntro({
       .then(() => {
         setIsPlaying(true);
         setIsMuted(false);
-        setNeedsPrompt(false);
       })
       .catch(() => {});
   }, []);
@@ -107,7 +105,6 @@ export default function VideoIntro({
           .then(() => {
             setIsPlaying(true);
             setIsMuted(false);
-            setNeedsPrompt(false);
           })
           .catch(() => {
             // Browser restricted unmuted autoplay before interaction.
@@ -115,19 +112,34 @@ export default function VideoIntro({
             fg.pause();
             fg.currentTime = 0;
             setIsPlaying(false);
-            setNeedsPrompt(true);
 
-            // Trigger sound + video from beginning on first interaction
+            // Trigger sound + video from beginning on any first gesture (scroll/click/touch/key)
             const handleFirstGesture = () => {
               startIntroWithSound();
-              window.removeEventListener("pointerdown", handleFirstGesture);
-              window.removeEventListener("keydown", handleFirstGesture);
-              window.removeEventListener("touchstart", handleFirstGesture);
+              [
+                "pointerdown",
+                "click",
+                "touchstart",
+                "scroll",
+                "wheel",
+                "keydown",
+              ].forEach((evt) => {
+                window.removeEventListener(evt, handleFirstGesture);
+                document.removeEventListener(evt, handleFirstGesture);
+              });
             };
 
-            window.addEventListener("pointerdown", handleFirstGesture, { once: true });
-            window.addEventListener("keydown", handleFirstGesture, { once: true });
-            window.addEventListener("touchstart", handleFirstGesture, { once: true });
+            [
+              "pointerdown",
+              "click",
+              "touchstart",
+              "scroll",
+              "wheel",
+              "keydown",
+            ].forEach((evt) => {
+              window.addEventListener(evt, handleFirstGesture, { once: true, passive: true });
+              document.addEventListener(evt, handleFirstGesture, { once: true, passive: true });
+            });
           });
       }
     }
@@ -317,26 +329,6 @@ export default function VideoIntro({
             </div>
           </div>
         </div>
-
-        {/* Center Sound Experience Prompt (shown only if browser policy prevented unmuted autoplay) */}
-        {needsPrompt && (
-          <div
-            className={styles.playPromptOverlay}
-            onClick={startIntroWithSound}
-            role="button"
-            tabIndex={0}
-            aria-label="Play video with sound"
-          >
-            <button
-              type="button"
-              className={styles.playPromptBtn}
-              onClick={startIntroWithSound}
-            >
-              <PlayIcon />
-              Play Intro with Sound
-            </button>
-          </div>
-        )}
 
         {/* Center Scroll Indicator */}
         <button

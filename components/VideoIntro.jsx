@@ -48,6 +48,7 @@ export default function VideoIntro({
   role = "Aspiring Software Engineer",
   skills = ["Java", "C", "Python", "HTML", "CSS", "JavaScript"],
   githubUrl = "https://github.com/Satyam2307",
+  linkedinUrl = "https://www.linkedin.com/in/satyam-chaurasia-6021b23aa/",
   nextSectionId = "about",
   projectsSectionId = "projects",
 }) {
@@ -270,6 +271,17 @@ export default function VideoIntro({
               rel="noreferrer"
             >
               GitHub
+              <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" style={{ marginLeft: "5px" }}>
+                <path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"></path>
+              </svg>
+            </a>
+            <a
+              className={styles.btnGhost}
+              href={linkedinUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              LinkedIn
               <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" style={{ marginLeft: "5px" }}>
                 <path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"></path>
               </svg>

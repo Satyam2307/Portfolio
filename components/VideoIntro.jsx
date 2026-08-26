@@ -66,6 +66,23 @@ export default function VideoIntro({
 
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
+  const [needsPrompt, setNeedsPrompt] = useState(false);
+
+  /* ---------- Start Intro With Sound from 0:00 ---------- */
+  const startIntroWithSound = useCallback(() => {
+    const fg = fgVideoRef.current;
+    if (!fg) return;
+    fg.currentTime = 0;
+    fg.muted = false;
+    fg.volume = 1.0;
+    fg.play()
+      .then(() => {
+        setIsPlaying(true);
+        setIsMuted(false);
+        setNeedsPrompt(false);
+      })
+      .catch(() => {});
+  }, []);
 
   /* ---------- Video End Handler ---------- */
   const handleVideoEnded = useCallback(() => {
@@ -76,71 +93,43 @@ export default function VideoIntro({
     setIsPlaying(false);
   }, []);
 
-  /* ---------- Entrance animation & Audio Autoplay Setup ---------- */
+  /* ---------- Entrance animation & Unmuted Autoplay Setup ---------- */
   useEffect(() => {
     const fg = fgVideoRef.current;
     if (fg) {
       fg.muted = false;
       fg.volume = 1.0;
+      fg.currentTime = 0;
 
-      const attemptUnmutedPlay = () => {
-        fg.muted = false;
-        fg.volume = 1.0;
-        const playPromise = fg.play();
-        if (playPromise !== undefined) {
-          playPromise
-            .then(() => {
-              setIsMuted(false);
-            })
-            .catch(() => {
-              // Browser autoplay policy restricted audio before interaction.
-              // Play muted temporarily so visuals start immediately:
-              fg.muted = true;
-              fg.play().catch(() => {});
-              setIsMuted(true);
+      const playPromise = fg.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsPlaying(true);
+            setIsMuted(false);
+            setNeedsPrompt(false);
+          })
+          .catch(() => {
+            // Browser restricted unmuted autoplay before interaction.
+            // Hold at 0:00 so viewer never misses any spoken lines!
+            fg.pause();
+            fg.currentTime = 0;
+            setIsPlaying(false);
+            setNeedsPrompt(true);
 
-              // Auto-unmute instantly on ANY user action (click, touch, scroll, key, wheel, pointer)
-              const activateAudio = () => {
-                if (fg) {
-                  fg.muted = false;
-                  fg.volume = 1.0;
-                  setIsMuted(false);
-                  // Ensure playback continues with audio
-                  if (fg.paused) {
-                    fg.play().catch(() => {});
-                  }
-                }
-                [
-                  "click",
-                  "pointerdown",
-                  "touchstart",
-                  "touchend",
-                  "scroll",
-                  "wheel",
-                  "keydown",
-                ].forEach((event) => {
-                  window.removeEventListener(event, activateAudio);
-                  document.removeEventListener(event, activateAudio);
-                });
-              };
+            // Trigger sound + video from beginning on first interaction
+            const handleFirstGesture = () => {
+              startIntroWithSound();
+              window.removeEventListener("pointerdown", handleFirstGesture);
+              window.removeEventListener("keydown", handleFirstGesture);
+              window.removeEventListener("touchstart", handleFirstGesture);
+            };
 
-              [
-                "click",
-                "pointerdown",
-                "touchstart",
-                "touchend",
-                "scroll",
-                "wheel",
-                "keydown",
-              ].forEach((event) => {
-                window.addEventListener(event, activateAudio, { once: true, passive: true });
-                document.addEventListener(event, activateAudio, { once: true, passive: true });
-              });
-            });
-        }
-      };
-
-      attemptUnmutedPlay();
+            window.addEventListener("pointerdown", handleFirstGesture, { once: true });
+            window.addEventListener("keydown", handleFirstGesture, { once: true });
+            window.addEventListener("touchstart", handleFirstGesture, { once: true });
+          });
+      }
     }
 
     const tl = gsap.timeline({
@@ -196,7 +185,7 @@ export default function VideoIntro({
     return () => {
       tl.kill();
     };
-  }, []);
+  }, [startIntroWithSound]);
 
   /* ---------- Actions ---------- */
   const togglePlay = useCallback(() => {
@@ -221,7 +210,6 @@ export default function VideoIntro({
     const next = !fg.muted;
     fg.muted = next;
     setIsMuted(next);
-    setShowHint(false);
   }, []);
 
   const scrollToSection = useCallback((id) => {
@@ -300,7 +288,6 @@ export default function VideoIntro({
               className={styles.fgVideo}
               src={videoSrc}
               autoPlay
-              muted={isMuted}
               playsInline
               preload="auto"
               onEnded={handleVideoEnded}
@@ -330,6 +317,26 @@ export default function VideoIntro({
             </div>
           </div>
         </div>
+
+        {/* Center Sound Experience Prompt (shown only if browser policy prevented unmuted autoplay) */}
+        {needsPrompt && (
+          <div
+            className={styles.playPromptOverlay}
+            onClick={startIntroWithSound}
+            role="button"
+            tabIndex={0}
+            aria-label="Play video with sound"
+          >
+            <button
+              type="button"
+              className={styles.playPromptBtn}
+              onClick={startIntroWithSound}
+            >
+              <PlayIcon />
+              Play Intro with Sound
+            </button>
+          </div>
+        )}
 
         {/* Center Scroll Indicator */}
         <button

@@ -64,7 +64,7 @@ export default function PortfolioSections() {
       description: "A narrative storytelling project built to engage users through scroll-driven flow layouts, custom graphics alignment, and cinematic visual transitions. Blends interactive reading with rich typography.",
       tech: ["HTML5", "CSS Keyframes", "JavaScript", "Creative Direction"],
       link: "https://github.com/Satyam2307/voyage-within",
-      liveUrl: "https://lnkd.in/dmwp4vWB",
+      liveUrl: "https://voyage-within.vercel.app/",
     },
     {
       title: "HeatShield",
@@ -73,7 +73,6 @@ export default function PortfolioSections() {
       description: "A smart heatstroke prevention and awareness web app. Provides real-time heat risk guidance, safety tips, and an interactive dashboard to help users stay protected during extreme heat conditions.",
       tech: ["HTML5", "CSS3", "JavaScript", "UI/UX"],
       link: "https://github.com/Satyam2307/HeatShield",
-      liveUrl: "https://lnkd.in/dTixBJ-p",
     },
     {
       title: "GripLine",
@@ -83,15 +82,6 @@ export default function PortfolioSections() {
       tech: ["HTML5", "CSS3", "JavaScript", "Local Storage"],
       link: "https://github.com/Satyam2307/GripLine",
       liveUrl: "https://grip-line.vercel.app/",
-    },
-    {
-      title: "Mini WhatsApp",
-      category: "Chat UI Clone",
-      period: "Recent Project",
-      description: "A functional mini clone of the WhatsApp messaging interface. Replicates the dual-panel chat layout with message bubbles, timestamps, and a live-feel responsive chat UI.",
-      tech: ["HTML5", "CSS3", "JavaScript", "Flexbox"],
-      link: "https://github.com/Satyam2307/Mini-Whatsapp",
-      liveUrl: "https://flowstate-ai-jet.vercel.app",
     },
     {
       title: "Bug Sniffer",
@@ -109,7 +99,6 @@ export default function PortfolioSections() {
       description: "A faithful recreation of the classic Simon Says memory game with progressive difficulty levels. Features animated color sequences, sound feedback, high-score tracking, and a polished retro aesthetic.",
       tech: ["HTML5", "CSS3", "JavaScript", "Game Logic"],
       link: "https://github.com/Satyam2307/Simon-Says-Game",
-      liveUrl: "https://lnkd.in/gFt2M2TM",
     },
   ];
 

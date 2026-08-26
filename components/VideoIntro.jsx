@@ -66,14 +66,54 @@ export default function VideoIntro({
   const scrollRef = useRef(null);
 
   const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
-  const [showHint, setShowHint] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
+  const [showHint, setShowHint] = useState(false);
 
-  /* ---------- Entrance animation ---------- */
+  /* ---------- Video End Handler ---------- */
+  const handleVideoEnded = useCallback(() => {
+    const fg = fgVideoRef.current;
+    if (fg) {
+      fg.pause();
+    }
+    setIsPlaying(false);
+  }, []);
+
+  /* ---------- Entrance animation & Audio Autoplay Setup ---------- */
   useEffect(() => {
     const fg = fgVideoRef.current;
     if (fg) {
-      fg.play().catch(() => {});
+      fg.muted = false;
+      const playPromise = fg.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsMuted(false);
+            setShowHint(false);
+          })
+          .catch(() => {
+            // Autoplay with sound restricted by browser policy: fallback to muted
+            fg.muted = true;
+            fg.play().catch(() => {});
+            setIsMuted(true);
+            setShowHint(true);
+
+            // Immediately unmute on the very first user interaction (click/touch/key) anywhere on page
+            const handleFirstInteraction = () => {
+              if (fg) {
+                fg.muted = false;
+                setIsMuted(false);
+                setShowHint(false);
+              }
+              window.removeEventListener("pointerdown", handleFirstInteraction);
+              window.removeEventListener("keydown", handleFirstInteraction);
+              window.removeEventListener("touchstart", handleFirstInteraction);
+            };
+
+            window.addEventListener("pointerdown", handleFirstInteraction, { once: true });
+            window.addEventListener("keydown", handleFirstInteraction, { once: true });
+            window.addEventListener("touchstart", handleFirstInteraction, { once: true });
+          });
+      }
     }
 
     const tl = gsap.timeline({
@@ -132,7 +172,7 @@ export default function VideoIntro({
         1.8
       );
 
-    // Auto-hide sound hint
+    // Auto-hide sound hint after 5.5s
     const timer = setTimeout(() => {
       setShowHint(false);
     }, 5500);
@@ -147,7 +187,11 @@ export default function VideoIntro({
   const togglePlay = useCallback(() => {
     const fg = fgVideoRef.current;
     if (!fg) return;
-    if (fg.paused) {
+    if (fg.ended || (fg.duration && fg.currentTime >= fg.duration)) {
+      fg.currentTime = 0;
+      fg.play().catch(() => {});
+      setIsPlaying(true);
+    } else if (fg.paused) {
       fg.play().catch(() => {});
       setIsPlaying(true);
     } else {
@@ -241,10 +285,10 @@ export default function VideoIntro({
               className={styles.fgVideo}
               src={videoSrc}
               autoPlay
-              loop
               muted={isMuted}
               playsInline
               preload="auto"
+              onEnded={handleVideoEnded}
             />
             {/* Visual Overlays */}
             <div className={styles.videoFade} aria-hidden="true" />

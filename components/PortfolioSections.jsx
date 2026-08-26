@@ -45,23 +45,63 @@ export default function PortfolioSections() {
       period: "Recent Project",
       description: "A pixel-perfect UI/UX recreation of the Spotify web player desktop experience. Designed to replicate the desktop player with custom media play controls, interactive side navigation libraries, and fluid layout responsiveness.",
       tech: ["HTML5", "CSS3 / Flexbox", "JavaScript", "Responsive Design"],
-      link: "https://github.com/Satyam2307",
+      link: "https://github.com/Satyam2307/Spotify-Web-Player-UI-Clone",
     },
     {
       title: "Sidebar Navigation Menu",
       category: "Component Design",
       period: "Recent Project",
-      description: "An elegant, interactive navigation drawer with smooth state transitions. Leverages modern CSS variables, flexbox alignments, active-state indicator track tracking, and collapsed layouts for compact viewports.",
+      description: "An elegant, interactive navigation drawer with smooth state transitions. Leverages modern CSS variables, flexbox alignments, active-state indicator tracking, and collapsed layouts for compact viewports.",
       tech: ["HTML5", "CSS Variables", "JavaScript", "Micro-interactions"],
-      link: "https://github.com/Satyam2307",
+      link: "https://github.com/Satyam2307/Sidebar-Navigation-Menu",
     },
     {
-      title: "Creative Storytelling Website",
+      title: "Voyage Within",
       category: "Immersive Web Design",
       period: "Recent Project",
       description: "A narrative storytelling project built to engage users through scroll-driven flow layouts, custom graphics alignment, and cinematic visual transitions. Blends interactive reading with rich typography.",
       tech: ["HTML5", "CSS Keyframes", "JavaScript", "Creative Direction"],
-      link: "https://github.com/Satyam2307",
+      link: "https://github.com/Satyam2307/voyage-within",
+    },
+    {
+      title: "HeatShield",
+      category: "Utility / Web App",
+      period: "Recent Project",
+      description: "A smart heatstroke prevention and awareness web app. Provides real-time heat risk guidance, safety tips, and an interactive dashboard to help users stay protected during extreme heat conditions.",
+      tech: ["HTML5", "CSS3", "JavaScript", "UI/UX"],
+      link: "https://github.com/Satyam2307/HeatShield",
+    },
+    {
+      title: "GripLine",
+      category: "Productivity Tool",
+      period: "Recent Project",
+      description: "A focused productivity and task-management tool designed for clarity. Features clean list management, priority tagging, and a minimal interface for distraction-free workflow.",
+      tech: ["HTML5", "CSS3", "JavaScript", "Local Storage"],
+      link: "https://github.com/Satyam2307/GripLine",
+    },
+    {
+      title: "Mini WhatsApp",
+      category: "Chat UI Clone",
+      period: "Recent Project",
+      description: "A functional mini clone of the WhatsApp messaging interface. Replicates the dual-panel chat layout with message bubbles, timestamps, and a live-feel responsive chat UI.",
+      tech: ["HTML5", "CSS3", "JavaScript", "Flexbox"],
+      link: "https://github.com/Satyam2307/Mini-Whatsapp",
+    },
+    {
+      title: "Bug Sniffer",
+      category: "Developer Tool",
+      period: "Recent Project",
+      description: "A lightweight browser-based debugging helper that sniffs and visualises common UI bugs — layout overflows, missing alt text, broken links — helping developers catch issues faster during development.",
+      tech: ["JavaScript", "HTML5", "CSS3", "DOM Inspection"],
+      link: "https://github.com/Satyam2307/Bug-Sniffer",
+    },
+    {
+      title: "Simon Says Game",
+      category: "Interactive Game",
+      period: "Recent Project",
+      description: "A faithful recreation of the classic Simon Says memory game with progressive difficulty levels. Features animated color sequences, sound feedback, high-score tracking, and a polished retro aesthetic.",
+      tech: ["HTML5", "CSS3", "JavaScript", "Game Logic"],
+      link: "https://github.com/Satyam2307/Simon-Says-Game",
     },
   ];
 
@@ -137,7 +177,7 @@ export default function PortfolioSections() {
         </section>
 
         {/* Card 03: Work — Projects */}
-        <section className={`${styles.card} ${styles.flow}`}>
+        <section className={`${styles.card} ${styles.flow}`} id="projects">
           <span className={styles.cardNum} aria-hidden="true">03</span>
           <p className={styles.eyebrow}>Work — Projects</p>
           <h2 className={styles.title}>Projects</h2>
@@ -160,17 +200,33 @@ export default function PortfolioSections() {
                     </li>
                   ))}
                 </ul>
-                <a
-                  href={proj.link}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={styles.projLink}
-                >
-                  View on GitHub
-                  <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
-                    <path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"></path>
-                  </svg>
-                </a>
+                <div className={styles.projLinkGroup}>
+                  <a
+                    href={proj.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={styles.projLink}
+                  >
+                    View on GitHub
+                    <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+                      <path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"></path>
+                    </svg>
+                  </a>
+                  {proj.liveUrl && (
+                    <a
+                      href={proj.liveUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={styles.projLinkLive}
+                    >
+                      Live Demo
+                      <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+                        <circle cx="12" cy="12" r="3" fill="currentColor"/>
+                        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none"/>
+                      </svg>
+                    </a>
+                  )}
+                </div>
               </div>
             ))}
           </div>

@@ -299,7 +299,6 @@
   text-transform: uppercase;
   color: #ff7a18;
   text-decoration: none;
-  margin-top: 1.5rem;
   transition: color 0.3s ease;
 }
 
@@ -313,6 +312,39 @@
 
 .projLink:hover svg {
   transform: translate(2px, -2px);
+}
+
+.projLinkGroup {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.projLinkLive {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(244, 241, 236, 0.55);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.projLinkLive svg {
+  transition: transform 0.3s ease;
+}
+
+.projLinkLive:hover {
+  color: #ffffff;
+}
+
+.projLinkLive:hover svg {
+  transform: scale(1.15);
 }
 
 /* ---------- 4. Contact Grid ---------- */

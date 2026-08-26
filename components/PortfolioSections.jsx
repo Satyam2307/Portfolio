@@ -46,6 +46,7 @@ export default function PortfolioSections() {
       description: "A pixel-perfect UI/UX recreation of the Spotify web player desktop experience. Designed to replicate the desktop player with custom media play controls, interactive side navigation libraries, and fluid layout responsiveness.",
       tech: ["HTML5", "CSS3 / Flexbox", "JavaScript", "Responsive Design"],
       link: "https://github.com/Satyam2307/Spotify-Web-Player-UI-Clone",
+      liveUrl: "https://spotify-web-player-ui-clone.vercel.app/",
     },
     {
       title: "Sidebar Navigation Menu",
@@ -54,6 +55,7 @@ export default function PortfolioSections() {
       description: "An elegant, interactive navigation drawer with smooth state transitions. Leverages modern CSS variables, flexbox alignments, active-state indicator tracking, and collapsed layouts for compact viewports.",
       tech: ["HTML5", "CSS Variables", "JavaScript", "Micro-interactions"],
       link: "https://github.com/Satyam2307/Sidebar-Navigation-Menu",
+      liveUrl: "https://sidebar-navigation-menu-nine.vercel.app/",
     },
     {
       title: "Voyage Within",
@@ -78,6 +80,7 @@ export default function PortfolioSections() {
       description: "A focused productivity and task-management tool designed for clarity. Features clean list management, priority tagging, and a minimal interface for distraction-free workflow.",
       tech: ["HTML5", "CSS3", "JavaScript", "Local Storage"],
       link: "https://github.com/Satyam2307/GripLine",
+      liveUrl: "https://grip-line.vercel.app/",
     },
     {
       title: "Mini WhatsApp",
@@ -94,6 +97,7 @@ export default function PortfolioSections() {
       description: "A lightweight browser-based debugging helper that sniffs and visualises common UI bugs — layout overflows, missing alt text, broken links — helping developers catch issues faster during development.",
       tech: ["JavaScript", "HTML5", "CSS3", "DOM Inspection"],
       link: "https://github.com/Satyam2307/Bug-Sniffer",
+      liveUrl: "https://bug-sniffer.vercel.app/",
     },
     {
       title: "Simon Says Game",

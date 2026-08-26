@@ -62,25 +62,12 @@ export default function VideoIntro({
   const actionsRef = useRef(null);
   const videoWrapRef = useRef(null);
   const controlsRef = useRef(null);
+  const soundHintRef = useRef(null);
   const scrollRef = useRef(null);
 
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
-
-  /* ---------- Start Intro With Sound from 0:00 ---------- */
-  const startIntroWithSound = useCallback(() => {
-    const fg = fgVideoRef.current;
-    if (!fg) return;
-    fg.currentTime = 0;
-    fg.muted = false;
-    fg.volume = 1.0;
-    fg.play()
-      .then(() => {
-        setIsPlaying(true);
-        setIsMuted(false);
-      })
-      .catch(() => {});
-  }, []);
+  const [showHint, setShowHint] = useState(false);
 
   /* ---------- Video End Handler ---------- */
   const handleVideoEnded = useCallback(() => {
@@ -91,55 +78,40 @@ export default function VideoIntro({
     setIsPlaying(false);
   }, []);
 
-  /* ---------- Entrance animation & Unmuted Autoplay Setup ---------- */
+  /* ---------- Entrance animation & Audio Autoplay Setup ---------- */
   useEffect(() => {
     const fg = fgVideoRef.current;
     if (fg) {
       fg.muted = false;
-      fg.volume = 1.0;
-      fg.currentTime = 0;
-
       const playPromise = fg.play();
       if (playPromise !== undefined) {
         playPromise
           .then(() => {
-            setIsPlaying(true);
             setIsMuted(false);
+            setShowHint(false);
           })
           .catch(() => {
-            // Browser restricted unmuted autoplay before interaction.
-            // Hold at 0:00 so viewer never misses any spoken lines!
-            fg.pause();
-            fg.currentTime = 0;
-            setIsPlaying(false);
+            // Autoplay with sound restricted by browser policy: fallback to muted
+            fg.muted = true;
+            fg.play().catch(() => {});
+            setIsMuted(true);
+            setShowHint(true);
 
-            // Trigger sound + video from beginning on any first gesture (scroll/click/touch/key)
-            const handleFirstGesture = () => {
-              startIntroWithSound();
-              [
-                "pointerdown",
-                "click",
-                "touchstart",
-                "scroll",
-                "wheel",
-                "keydown",
-              ].forEach((evt) => {
-                window.removeEventListener(evt, handleFirstGesture);
-                document.removeEventListener(evt, handleFirstGesture);
-              });
+            // Immediately unmute on the very first user interaction (click/touch/key) anywhere on page
+            const handleFirstInteraction = () => {
+              if (fg) {
+                fg.muted = false;
+                setIsMuted(false);
+                setShowHint(false);
+              }
+              window.removeEventListener("pointerdown", handleFirstInteraction);
+              window.removeEventListener("keydown", handleFirstInteraction);
+              window.removeEventListener("touchstart", handleFirstInteraction);
             };
 
-            [
-              "pointerdown",
-              "click",
-              "touchstart",
-              "scroll",
-              "wheel",
-              "keydown",
-            ].forEach((evt) => {
-              window.addEventListener(evt, handleFirstGesture, { once: true, passive: true });
-              document.addEventListener(evt, handleFirstGesture, { once: true, passive: true });
-            });
+            window.addEventListener("pointerdown", handleFirstInteraction, { once: true });
+            window.addEventListener("keydown", handleFirstInteraction, { once: true });
+            window.addEventListener("touchstart", handleFirstInteraction, { once: true });
           });
       }
     }
@@ -188,16 +160,28 @@ export default function VideoIntro({
         1.4
       )
       .fromTo(
+        soundHintRef.current,
+        { opacity: 0, y: -10 },
+        { opacity: 1, y: 0, duration: 0.6 },
+        1.5
+      )
+      .fromTo(
         scrollRef.current,
         { opacity: 0 },
         { opacity: 1, duration: 0.8 },
         1.8
       );
 
+    // Auto-hide sound hint after 5.5s
+    const timer = setTimeout(() => {
+      setShowHint(false);
+    }, 5500);
+
     return () => {
       tl.kill();
+      clearTimeout(timer);
     };
-  }, [startIntroWithSound]);
+  }, []);
 
   /* ---------- Actions ---------- */
   const togglePlay = useCallback(() => {
@@ -222,6 +206,7 @@ export default function VideoIntro({
     const next = !fg.muted;
     fg.muted = next;
     setIsMuted(next);
+    setShowHint(false);
   }, []);
 
   const scrollToSection = useCallback((id) => {
@@ -300,6 +285,7 @@ export default function VideoIntro({
               className={styles.fgVideo}
               src={videoSrc}
               autoPlay
+              muted={isMuted}
               playsInline
               preload="auto"
               onEnded={handleVideoEnded}
@@ -327,6 +313,19 @@ export default function VideoIntro({
                 {isMuted ? <MutedIcon /> : <UnmutedIcon />}
               </button>
             </div>
+
+            {/* Floating Hint */}
+            <button
+              ref={soundHintRef}
+              type="button"
+              onClick={toggleMute}
+              className={`${styles.soundHint} ${showHint ? styles.soundHintShow : ""}`}
+              aria-hidden={!showHint}
+              tabIndex={0}
+            >
+              <span className={styles.soundHintDot} />
+              Tap for sound
+            </button>
           </div>
         </div>
 

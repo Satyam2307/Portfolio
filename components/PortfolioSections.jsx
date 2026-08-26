@@ -73,6 +73,7 @@ export default function PortfolioSections() {
       description: "A smart heatstroke prevention and awareness web app. Provides real-time heat risk guidance, safety tips, and an interactive dashboard to help users stay protected during extreme heat conditions.",
       tech: ["HTML5", "CSS3", "JavaScript", "UI/UX"],
       link: "https://github.com/Satyam2307/HeatShield",
+      liveUrl: "https://heat-shields.vercel.app/",
     },
     {
       title: "GripLine",
@@ -99,6 +100,7 @@ export default function PortfolioSections() {
       description: "A faithful recreation of the classic Simon Says memory game with progressive difficulty levels. Features animated color sequences, sound feedback, high-score tracking, and a polished retro aesthetic.",
       tech: ["HTML5", "CSS3", "JavaScript", "Game Logic"],
       link: "https://github.com/Satyam2307/Simon-Says-Game",
+      liveUrl: "https://simon-says-game-pi-opal.vercel.app/",
     },
   ];
 

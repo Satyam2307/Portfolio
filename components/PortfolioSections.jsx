@@ -13,9 +13,10 @@ export default function PortfolioSections() {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    // Basic GSAP fade animations for elements inside cards when they enter viewport
     const ctx = gsap.context(() => {
       const cards = gsap.utils.toArray(`.${styles.card}`);
+
+      // 1. Entrance fade animations for inner content
       cards.forEach((card) => {
         const eyebrow = card.querySelector(`.${styles.eyebrow}`);
         const title = card.querySelector(`.${styles.title}`);
@@ -32,6 +33,22 @@ export default function PortfolioSections() {
         if (eyebrow) tl.fromTo(eyebrow, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.6 });
         if (title) tl.fromTo(title, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, "-=0.45");
         if (innerContent) tl.fromTo(innerContent, { opacity: 0, y: 25 }, { opacity: 1, y: 0, duration: 0.8 }, "-=0.45");
+      });
+
+      // 2. Stacking card pin transitions
+      cards.forEach((card, i) => {
+        if (i === cards.length - 1) return; // Last card doesn't need to pin
+        const nextCard = cards[i + 1];
+
+        ScrollTrigger.create({
+          trigger: card,
+          start: () => (card.offsetHeight > window.innerHeight ? "bottom bottom" : "top 8vh"),
+          endTrigger: nextCard,
+          end: "top 8vh",
+          pin: true,
+          pinSpacing: false,
+          invalidateOnRefresh: true,
+        });
       });
     }, containerRef);
 

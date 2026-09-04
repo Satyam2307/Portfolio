@@ -22,9 +22,9 @@
 /* ---------- Sticky Stacked Cards ---------- */
 
 .card {
-  position: sticky;
+  position: relative;
   border-radius: 22px;
-  padding: clamp(2rem, 3.5vw, 3.2rem);
+  padding: clamp(2.2rem, 4vw, 3.6rem);
   min-height: 84vh;
   margin-bottom: 14vh;
   background: 
@@ -41,29 +41,24 @@
   margin-bottom: 0;
 }
 
-/* Card Sticky Offsets */
+/* Card Stacking Z-Index Hierarchy */
 .card:first-of-type {
-  top: 8vh;
   z-index: 1;
 }
 
 .card:nth-of-type(2) {
-  top: calc(8vh + 16px);
   z-index: 2;
 }
 
 .card:nth-of-type(3) {
-  top: calc(8vh + 32px);
   z-index: 3;
 }
 
 .card:nth-of-type(4) {
-  top: calc(8vh + 48px);
   z-index: 4;
 }
 
 .card:nth-of-type(5) {
-  top: calc(8vh + 64px);
   z-index: 5;
 }
 
@@ -211,26 +206,19 @@
 /* ---------- 3. Project Showcase ---------- */
 
 .projList {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.25rem;
-  margin-top: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  margin-top: 0.5rem;
 }
 
 .proj {
   position: relative;
-  padding: 1.35rem 1.45rem;
+  padding: 1.5rem 1.6rem 1.7rem;
   border-radius: 14px;
   background: hsla(0, 0%, 100%, 0.022);
   border: 1px solid hsla(0, 0%, 100%, 0.08);
   border-left: 2px solid rgba(255, 122, 24, 0.55);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.proj:last-child:nth-child(odd) {
-  grid-column: span 2;
 }
 
 .projHead {
@@ -515,15 +503,6 @@
 
 /* ---------- Responsive Layout ---------- */
 
-@media (max-width: 860px) {
-  .projList {
-    grid-template-columns: 1fr;
-  }
-
-  .proj:last-child:nth-child(odd) {
-    grid-column: span 1;
-  }
-}
 
 @media (max-width: 760px) {
   .card {

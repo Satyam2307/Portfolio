@@ -24,10 +24,9 @@
 .card {
   position: sticky;
   border-radius: 22px;
-  padding: clamp(2.2rem, 4vw, 3.6rem);
+  padding: clamp(2rem, 3.5vw, 3.2rem);
   min-height: 84vh;
   margin-bottom: 14vh;
-  overflow: hidden;
   background: 
     radial-gradient(130% 130% at 100% 0, rgba(255, 122, 24, 0.14), transparent 52%),
     linear-gradient(180deg, #110c16, #0b0911);
@@ -38,40 +37,33 @@
     inset 0 1px 0 hsla(0, 0%, 100%, 0.06);
 }
 
-.flow {
-  position: relative;
-  min-height: auto;
-  margin-bottom: clamp(3.5rem, 9vh, 7rem);
-}
-
-.card:last-of-type,
-.flow:last-of-type {
+.card:last-of-type {
   margin-bottom: 0;
 }
 
 /* Card Sticky Offsets */
 .card:first-of-type {
-  top: 9vh;
+  top: 8vh;
   z-index: 1;
 }
 
 .card:nth-of-type(2) {
-  top: calc(9vh + 16px);
+  top: calc(8vh + 16px);
   z-index: 2;
 }
 
 .card:nth-of-type(3) {
-  top: calc(9vh + 32px);
+  top: calc(8vh + 32px);
   z-index: 3;
 }
 
 .card:nth-of-type(4) {
-  top: calc(9vh + 48px);
+  top: calc(8vh + 48px);
   z-index: 4;
 }
 
 .card:nth-of-type(5) {
-  top: calc(9vh + 64px);
+  top: calc(8vh + 64px);
   z-index: 5;
 }
 
@@ -219,19 +211,26 @@
 /* ---------- 3. Project Showcase ---------- */
 
 .projList {
-  display: flex;
-  flex-direction: column;
-  gap: 1.8rem;
-  margin-top: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 0.8rem;
 }
 
 .proj {
   position: relative;
-  padding: 1.5rem 1.6rem 1.7rem;
+  padding: 1.35rem 1.45rem;
   border-radius: 14px;
   background: hsla(0, 0%, 100%, 0.022);
   border: 1px solid hsla(0, 0%, 100%, 0.08);
   border-left: 2px solid rgba(255, 122, 24, 0.55);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.proj:last-child:nth-child(odd) {
+  grid-column: span 2;
 }
 
 .projHead {
@@ -516,7 +515,23 @@
 
 /* ---------- Responsive Layout ---------- */
 
+@media (max-width: 860px) {
+  .projList {
+    grid-template-columns: 1fr;
+  }
+
+  .proj:last-child:nth-child(odd) {
+    grid-column: span 1;
+  }
+}
+
 @media (max-width: 760px) {
+  .card {
+    min-height: auto;
+    margin-bottom: 6vh;
+    padding: 1.6rem 1.4rem;
+  }
+
   .skillGrid {
     grid-template-columns: 1fr;
   }

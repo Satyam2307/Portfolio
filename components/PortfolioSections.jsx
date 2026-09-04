@@ -179,7 +179,7 @@ export default function PortfolioSections() {
         </section>
 
         {/* Card 03: Work — Projects */}
-        <section className={`${styles.card} ${styles.flow}`} id="projects">
+        <section className={styles.card} id="projects">
           <span className={styles.cardNum} aria-hidden="true">03</span>
           <p className={styles.eyebrow}>Work — Featured Projects</p>
           <h2 className={styles.title}>Projects</h2>
@@ -235,7 +235,7 @@ export default function PortfolioSections() {
         </section>
 
         {/* Card 04: Innovation — Hackathon Builds */}
-        <section className={`${styles.card} ${styles.flow}`} id="hackathons">
+        <section className={styles.card} id="hackathons">
           <span className={styles.cardNum} aria-hidden="true">04</span>
           <p className={styles.eyebrow}>Innovation — Hackathon Builds</p>
           <h2 className={styles.title}>Hackathon Builds</h2>
@@ -291,7 +291,7 @@ export default function PortfolioSections() {
         </section>
 
         {/* Card 05: Contact — Conversation */}
-        <section id="contact" className={`${styles.card} ${styles.flow}`}>
+        <section id="contact" className={styles.card}>
           <span className={styles.cardNum} aria-hidden="true">05</span>
           <p className={styles.eyebrow}>Collaboration — Reach Out</p>
           <h2 className={styles.title}>Start a Conversation</h2>

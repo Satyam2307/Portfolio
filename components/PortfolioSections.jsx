@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import GithubProofOfWork from "./GithubProofOfWork";
+import LiveStatusBadge from "./LiveStatusBadge";
 import styles from "./PortfolioSections.module.css";
 
 if (typeof window !== "undefined") {
@@ -12,6 +13,47 @@ if (typeof window !== "undefined") {
 
 export default function PortfolioSections() {
   const containerRef = useRef(null);
+
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formStatus, setFormStatus] = useState("idle");
+  const [toastMessage, setToastMessage] = useState("");
+  const [copiedEmail, setCopiedEmail] = useState(false);
+
+  const handleCopyEmail = (e) => {
+    e.preventDefault();
+    if (typeof navigator !== "undefined" && navigator.clipboard) {
+      navigator.clipboard.writeText("chaurasiasatyam05@gmail.com");
+      setCopiedEmail(true);
+      setTimeout(() => setCopiedEmail(false), 2500);
+    }
+  };
+
+  const handleContactSubmit = async (e) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.message) return;
+
+    setFormStatus("submitting");
+    setToastMessage("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Failed to deliver message.");
+
+      setFormStatus("success");
+      setToastMessage("Message sent! I'll get back to you within 24 hours.");
+      setFormData({ name: "", email: "", message: "" });
+    } catch (err) {
+      console.warn("Contact form submit error:", err);
+      setFormStatus("error");
+      setToastMessage(err.message || "Message delivery failed. Please email directly.");
+    }
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -324,6 +366,7 @@ export default function PortfolioSections() {
 
           <div className={styles.contactGrid}>
             <div className={styles.contactDetails}>
+              <LiveStatusBadge />
               <p className={styles.contactPrompt}>
                 Have an idea, project, or opportunity you want to collaborate on? Let's build something exceptional.
               </p>
@@ -332,6 +375,14 @@ export default function PortfolioSections() {
                   <span className={styles.linkIcon}>✉</span>
                   <span>chaurasiasatyam05@gmail.com</span>
                 </a>
+                <button
+                  type="button"
+                  onClick={handleCopyEmail}
+                  className={styles.copyEmailBtn}
+                  aria-label="Copy email address"
+                >
+                  <span>{copiedEmail ? "✓ Copied to Clipboard!" : "📋 Copy Email"}</span>
+                </button>
                 <a href="https://github.com/Satyam2307" target="_blank" rel="noopener noreferrer" className={styles.contactLinkItem}>
                   <span className={styles.linkIcon}>✦</span>
                   <span>GitHub</span>
@@ -343,23 +394,81 @@ export default function PortfolioSections() {
               </div>
             </div>
 
-            <form className={styles.contactForm} onSubmit={(e) => e.preventDefault()}>
+            <form className={styles.contactForm} onSubmit={handleContactSubmit}>
               <div className={styles.inputGroup}>
                 <label htmlFor="name">Your Name</label>
-                <input type="text" id="name" required placeholder="Satyam Chaurasia" />
+                <input
+                  type="text"
+                  id="name"
+                  required
+                  placeholder="Satyam Chaurasia"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  disabled={formStatus === "submitting"}
+                />
               </div>
               <div className={styles.inputGroup}>
                 <label htmlFor="email">Your Email</label>
-                <input type="email" id="email" required placeholder="you@example.com" />
+                <input
+                  type="email"
+                  id="email"
+                  required
+                  placeholder="you@example.com"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  disabled={formStatus === "submitting"}
+                />
               </div>
               <div className={styles.inputGroup}>
                 <label htmlFor="message">Message</label>
-                <textarea id="message" rows="5" required placeholder="Let's build a cinematic project..."></textarea>
+                <textarea
+                  id="message"
+                  rows="5"
+                  required
+                  placeholder="Let's build a cinematic project..."
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  disabled={formStatus === "submitting"}
+                />
               </div>
-              <button type="submit" className={styles.submitBtn}>
-                <span>Send Message</span>
-                <span className={styles.btnArrow}>→</span>
+              <button
+                type="submit"
+                className={styles.submitBtn}
+                disabled={formStatus === "submitting"}
+              >
+                {formStatus === "submitting" ? (
+                  <>
+                    <span className={styles.submitSpinner} aria-hidden="true" />
+                    <span>Sending Message...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Send Message</span>
+                    <span className={styles.btnArrow}>→</span>
+                  </>
+                )}
               </button>
+
+              {formStatus === "success" && (
+                <div className={styles.toastSuccess} role="status">
+                  <span aria-hidden="true">✓</span>
+                  <span>{toastMessage}</span>
+                </div>
+              )}
+
+              {formStatus === "error" && (
+                <div className={styles.toastError} role="alert">
+                  <span>{toastMessage}</span>
+                  <a
+                    href={`mailto:chaurasiasatyam05@gmail.com?subject=Portfolio%20Inquiry%20from%20${encodeURIComponent(
+                      formData.name || "Visitor"
+                    )}&body=${encodeURIComponent(formData.message || "")}`}
+                    className={styles.errorAction}
+                  >
+                    Send directly via your email app →
+                  </a>
+                </div>
+              )}
             </form>
           </div>
         </section>

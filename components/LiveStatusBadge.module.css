@@ -1,0 +1,102 @@
+/* ===========================================================
+   LiveStatusBadge.module.css
+   Live recruiter availability pill and ticking IST clock
+   =========================================================== */
+
+.statusWrap {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.65rem 1rem;
+  padding: 0.45rem 1.05rem;
+  background: rgba(18, 14, 24, 0.7);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 122, 24, 0.22);
+  border-radius: 9999px;
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.8rem;
+  color: #d2c8d8;
+  margin-bottom: 1.25rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  user-select: none;
+}
+
+.statusWrap:hover {
+  border-color: rgba(255, 122, 24, 0.45);
+  box-shadow: 
+    0 6px 25px rgba(255, 122, 24, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+.availGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.pulseDot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #10b981;
+}
+
+.pulseDot::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.45);
+  animation: pulsePing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes pulsePing {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.9;
+  }
+  70%, 100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+.availText {
+  font-weight: 500;
+  color: #f1ecf5;
+  letter-spacing: 0.01em;
+}
+
+.divider {
+  width: 3px;
+  height: 3px;
+  background: rgba(255, 122, 24, 0.4);
+  border-radius: 50%;
+}
+
+.clockGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #a49aa9;
+  font-size: 0.78rem;
+}
+
+.clockIcon {
+  color: #ff9b4a;
+  font-size: 0.85rem;
+}
+
+.timeDigits {
+  font-family: var(--font-heading), monospace, sans-serif;
+  font-weight: 600;
+  color: #ffb573;
+  letter-spacing: 0.04em;
+}

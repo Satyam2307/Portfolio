@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { gsap } from "gsap";
 import CinematicLayer from "./CinematicLayer";
+import LiveStatusBadge from "./LiveStatusBadge";
 import styles from "./VideoIntro.module.css";
 
 /* ---------- Inline icon set ---------- */
@@ -231,6 +232,7 @@ export default function VideoIntro({
 
         {/* Left Column: Copy & Actions */}
         <div className={styles.left}>
+          <LiveStatusBadge />
           <h1 className={styles.name}>
             <span className={styles.lineMask}>
               <span ref={nameLine1Ref} className={styles.lineFirst}>

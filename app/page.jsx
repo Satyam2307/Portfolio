@@ -1,10 +1,12 @@
 import VideoIntro from "../components/VideoIntro";
 import PortfolioSections from "../components/PortfolioSections";
 import SpideyWidgets from "../components/SpideyWidgets";
+import WebShooterCursor from "../components/WebShooterCursor";
 
 export default function Page() {
   return (
     <main>
+      <WebShooterCursor />
       <SpideyWidgets />
       <VideoIntro
         videoSrc="/videos/portfolio_video.mp4"

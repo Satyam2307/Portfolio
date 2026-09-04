@@ -130,7 +130,7 @@ export default function PortfolioSections() {
       <div className={styles.inner}>
         
         {/* Card 01: About — Profile */}
-        <section className={styles.card}>
+        <section className={styles.card} id="about">
           <span className={styles.cardNum} aria-hidden="true">01</span>
           <p className={styles.eyebrow}>About — Profile</p>
           <h2 className={styles.title}>Who I Am</h2>

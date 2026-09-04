@@ -17,6 +17,18 @@
   border: none;
   cursor: pointer;
   outline: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-50px);
+  pointer-events: none;
+  transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.2, 1, 0.3, 1), visibility 0.45s;
+}
+
+.lampVisible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .strand {
@@ -135,12 +147,22 @@
   border: none;
   cursor: pointer;
   line-height: 0;
-  transform: rotate(-2deg);
-  transition: transform 0.35s cubic-bezier(0.2, 1, 0.3, 1);
+  transform: rotate(-2deg) translateY(50px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.2, 1, 0.3, 1), visibility 0.45s;
   outline: none;
 }
 
-.sound:hover {
+.soundVisible {
+  opacity: 1;
+  visibility: visible;
+  transform: rotate(-2deg) translateY(0);
+  pointer-events: auto;
+}
+
+.soundVisible:hover {
   transform: rotate(0deg) translateY(-4px) scale(1.08);
 }
 

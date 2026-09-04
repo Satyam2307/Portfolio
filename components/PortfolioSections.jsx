@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import GithubProofOfWork from "./GithubProofOfWork";
 import styles from "./PortfolioSections.module.css";
 
 if (typeof window !== "undefined") {
@@ -20,7 +21,7 @@ export default function PortfolioSections() {
       cards.forEach((card) => {
         const eyebrow = card.querySelector(`.${styles.eyebrow}`);
         const title = card.querySelector(`.${styles.title}`);
-        const innerContent = card.querySelector(`.${styles.lead}, .${styles.skillGrid}, .${styles.projList}, .${styles.contactGrid}`);
+        const innerContent = card.querySelector(`.${styles.lead}, .${styles.skillGrid}, .${styles.projList}, .${styles.contactGrid}, div[class*="proofWrap"]`);
 
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -307,9 +308,17 @@ export default function PortfolioSections() {
           </div>
         </section>
 
-        {/* Card 05: Contact — Conversation */}
-        <section id="contact" className={styles.card}>
+        {/* Card 05: Proof of Work — GitHub Activity */}
+        <section id="proof-of-work" className={styles.card}>
           <span className={styles.cardNum} aria-hidden="true">05</span>
+          <p className={styles.eyebrow}>Activity — Open Source</p>
+          <h2 className={styles.title}>Proof of Work</h2>
+          <GithubProofOfWork />
+        </section>
+
+        {/* Card 06: Contact — Conversation */}
+        <section id="contact" className={styles.card}>
+          <span className={styles.cardNum} aria-hidden="true">06</span>
           <p className={styles.eyebrow}>Collaboration — Reach Out</p>
           <h2 className={styles.title}>Start a Conversation</h2>
 

@@ -62,6 +62,10 @@
   z-index: 5;
 }
 
+.card:nth-of-type(6) {
+  z-index: 6;
+}
+
 /* Card border glowing effect */
 .card::before {
   content: "";

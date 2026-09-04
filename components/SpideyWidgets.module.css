@@ -1,0 +1,235 @@
+/* ===========================================================
+   SpideyWidgets.module.css
+   Spider-Man interactive widgets (Hanging & Music Player)
+   =========================================================== */
+
+/* ---------- 1. Hanging Spider-Man (Top Right) ---------- */
+.lamp {
+  position: fixed;
+  top: 0;
+  right: clamp(20px, 5vw, 75px);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.strand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: 50% 0;
+  animation: sway 2.2s ease-in-out infinite;
+  transition: transform 0.2s ease;
+}
+
+.web {
+  display: block;
+  width: 2px;
+  height: 68px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 122, 24, 0.5) 50%, rgba(255, 255, 255, 0.7) 100%);
+  box-shadow: 0 0 6px rgba(255, 122, 24, 0.4);
+  opacity: 0.85;
+}
+
+.spidey {
+  display: block;
+  width: 52px;
+  height: auto;
+  margin-top: -2px;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 12px rgba(255, 60, 40, 0.25));
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.lamp:hover .spidey {
+  transform: scale(1.08);
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 18px rgba(255, 122, 24, 0.6));
+}
+
+.lampHint {
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ff9b4a;
+  background: rgba(15, 12, 20, 0.85);
+  border: 1px solid rgba(255, 122, 24, 0.3);
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.lamp:hover .lampHint {
+  opacity: 1;
+  transform: translateX(-50%) translateY(2px);
+}
+
+@keyframes sway {
+  0%, 100% {
+    transform: rotate(4.5deg);
+  }
+  50% {
+    transform: rotate(-4.5deg);
+  }
+}
+
+.tugged {
+  animation: tug 0.75s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+@keyframes tug {
+  0%   { transform: translateY(0); }
+  28%  { transform: translateY(32px); }
+  52%  { transform: translateY(-8px); }
+  74%  { transform: translateY(4px); }
+  100% { transform: translateY(0); }
+}
+
+/* Spider web splash ripple when tugged */
+.webRipple {
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid #ff7a18;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 1;
+  pointer-events: none;
+  animation: rippleOut 0.7s ease-out forwards;
+}
+
+@keyframes rippleOut {
+  to {
+    transform: translate(-50%, -50%) scale(10);
+    opacity: 0;
+  }
+}
+
+
+/* ---------- 2. Spider-Man Mask Audio Player (Bottom Left) ---------- */
+.sound {
+  position: fixed;
+  left: clamp(16px, 3.5vw, 36px);
+  bottom: clamp(18px, 3.5vw, 36px);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 0;
+  transform: rotate(-2deg);
+  transition: transform 0.35s cubic-bezier(0.2, 1, 0.3, 1);
+  outline: none;
+}
+
+.sound:hover {
+  transform: rotate(0deg) translateY(-4px) scale(1.08);
+}
+
+.face {
+  display: block;
+  height: clamp(52px, 5.5vw, 68px);
+  width: auto;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 10px rgba(255, 122, 24, 0.2));
+  transition: filter 0.4s ease;
+}
+
+/* Nod along to the music when playing */
+.soundActive .face {
+  animation: nod 1.8s ease-in-out infinite;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 20px rgba(255, 122, 24, 0.7));
+}
+
+@keyframes nod {
+  0%, 100% {
+    transform: rotate(-3deg) translateY(0);
+  }
+  50% {
+    transform: rotate(3deg) translateY(-3px);
+  }
+}
+
+.soundHint {
+  position: absolute;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ff9b4a;
+  background: rgba(15, 12, 20, 0.9);
+  border: 1px solid rgba(255, 122, 24, 0.35);
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+}
+
+.sound:hover .soundHint,
+.soundActive .soundHint {
+  opacity: 1;
+}
+
+.soundActive .soundHint {
+  color: #ffb066;
+  border-color: rgba(255, 176, 102, 0.6);
+  box-shadow: 0 0 16px rgba(255, 122, 24, 0.4);
+}
+
+/* Sound waves aura when active */
+.soundWaves {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 122, 24, 0.45);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.soundActive .soundWaves {
+  animation: wavePulse 1.8s ease-out infinite;
+}
+
+@keyframes wavePulse {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .strand {
+    animation: none;
+  }
+  .soundActive .face {
+    animation: none;
+  }
+}

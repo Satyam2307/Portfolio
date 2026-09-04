@@ -1,0 +1,229 @@
+/* ===========================================================
+   GithubProofOfWork.module.css
+   Live GitHub Proof of Work Heatmap & Contribution Metrics
+   =========================================================== */
+
+.proofWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  margin-top: 1rem;
+}
+
+.proofHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.8rem 1.5rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.proofUser {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  font-weight: 700;
+  color: #f6f1ea;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.proofUser:hover {
+  color: #ff7a18;
+}
+
+.proofUser svg {
+  color: #ff7a18;
+  transition: transform 0.3s ease;
+}
+
+.proofUser:hover svg {
+  transform: translate(2px, -2px);
+}
+
+.proofStatsSummary {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #ffb066;
+  text-transform: uppercase;
+  background: rgba(255, 122, 24, 0.08);
+  border: 1px solid rgba(255, 122, 24, 0.25);
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+}
+
+/* ---------- 52-Week GitHub Heatmap Grid ---------- */
+.gridContainer {
+  position: relative;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 1.4rem 1.6rem 1.2rem;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 122, 24, 0.3) transparent;
+}
+
+.monthLabels {
+  position: relative;
+  height: 18px;
+  margin-bottom: 8px;
+  min-width: 780px;
+}
+
+.monthLabel {
+  position: absolute;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: hsla(35, 40%, 94%, 0.45);
+}
+
+.grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(7, 12px);
+  gap: 3.5px;
+  min-width: 780px;
+}
+
+.cell {
+  width: 12px;
+  height: 12px;
+  border-radius: 2.5px;
+  background: rgba(255, 255, 255, 0.04);
+  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+}
+
+.cell:hover {
+  transform: scale(1.35);
+  z-index: 10;
+  box-shadow: 0 0 8px rgba(255, 122, 24, 0.8);
+}
+
+/* Activity Levels */
+.level0 {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.level1 {
+  background: rgba(255, 122, 24, 0.35);
+}
+
+.level2 {
+  background: rgba(255, 122, 24, 0.6);
+}
+
+.level3 {
+  background: rgba(255, 145, 60, 0.85);
+  box-shadow: 0 0 5px rgba(255, 122, 24, 0.3);
+}
+
+.level4 {
+  background: #ff7a18;
+  box-shadow: 0 0 8px rgba(255, 122, 24, 0.6);
+}
+
+/* Grid Foot / Legend */
+.gridFoot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  color: hsla(35, 40%, 94%, 0.45);
+}
+
+.legendLabel {
+  margin: 0 0.2rem;
+}
+
+.legendCell {
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+}
+
+.liveNote {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.74rem;
+  color: hsla(35, 40%, 94%, 0.6);
+}
+
+.liveDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
+  animation: pulseDot 2s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+/* ---------- Stat Cards Grid ---------- */
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.statCard {
+  padding: 1.1rem 1.3rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-left: 2px solid rgba(255, 122, 24, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.statVal {
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-weight: 700;
+  color: #f6f1ea;
+  margin: 0;
+}
+
+.statTitle {
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: hsla(35, 40%, 94%, 0.5);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .statsRow {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,9 +1,11 @@
 import VideoIntro from "../components/VideoIntro";
 import PortfolioSections from "../components/PortfolioSections";
+import SpideyWidgets from "../components/SpideyWidgets";
 
 export default function Page() {
   return (
     <main>
+      <SpideyWidgets />
       <VideoIntro
         videoSrc="/videos/portfolio_video.mp4"
         tagline="Aspiring Software Engineer"

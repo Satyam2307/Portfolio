@@ -38,69 +38,72 @@ export default function PortfolioSections() {
     return () => ctx.revert();
   }, []);
 
-  const projectsList = [
+  const featuredProjects = [
     {
       title: "Spotify Web Player UI Clone",
-      category: "Frontend Clone",
-      period: "Recent Project",
-      description: "A pixel-perfect UI/UX recreation of the Spotify web player desktop experience. Designed to replicate the desktop player with custom media play controls, interactive side navigation libraries, and fluid layout responsiveness.",
-      tech: ["HTML5", "CSS3 / Flexbox", "JavaScript", "Responsive Design"],
+      category: "Frontend Architecture & Media UI",
+      period: "Web Audio UI",
+      description: "A high-fidelity desktop web player recreation replicating Spotify's UI/UX. Features a custom audio playback bar, interactive volume and seekbar controls, responsive navigation drawer, and dynamic multi-column playlists.",
+      tech: ["Semantic HTML5", "CSS3 Grid & Flexbox", "Audio Media UI", "Responsive Layouts"],
       link: "https://github.com/Satyam2307/Spotify-Web-Player-UI-Clone",
       liveUrl: "https://spotify-web-player-ui-clone.vercel.app/",
     },
     {
       title: "Sidebar Navigation Menu",
-      category: "Component Design",
-      period: "Recent Project",
-      description: "An elegant, interactive navigation drawer with smooth state transitions. Leverages modern CSS variables, flexbox alignments, active-state indicator tracking, and collapsed layouts for compact viewports.",
-      tech: ["HTML5", "CSS Variables", "JavaScript", "Micro-interactions"],
+      category: "Component Design & Micro-interactions",
+      period: "Interactive Component",
+      description: "An elegant, accessible drawer navigation system with fluid state transitions. Engineered using CSS custom properties, icon alignment, active indicator tracking, and compact collapsible viewport states.",
+      tech: ["HTML5", "CSS Custom Properties", "Modern Flexbox", "CSS Transitions & Keyframes"],
       link: "https://github.com/Satyam2307/Sidebar-Navigation-Menu",
       liveUrl: "https://sidebar-navigation-menu-nine.vercel.app/",
     },
     {
-      title: "Voyage Within",
-      category: "Immersive Web Design",
-      period: "Recent Project",
-      description: "A narrative storytelling project built to engage users through scroll-driven flow layouts, custom graphics alignment, and cinematic visual transitions. Blends interactive reading with rich typography.",
-      tech: ["HTML5", "CSS Keyframes", "JavaScript", "Creative Direction"],
-      link: "https://github.com/Satyam2307/voyage-within",
-      liveUrl: "https://voyage-within.vercel.app/",
+      title: "Simon Says Game",
+      category: "Interactive Game Engineering",
+      period: "Vanilla JS Game",
+      description: "A faithful recreation of the classic Simon Says electronic memory game. Implements random sequence generation, progressive difficulty level scaling, audio cue feedback, DOM state management, and high-score tracking.",
+      tech: ["JavaScript (ES6+)", "DOM Manipulation", "Web Audio API", "CSS Keyframe Animations", "Game State Machine"],
+      link: "https://github.com/Satyam2307/Simon-Says-Game",
+      liveUrl: "https://simon-says-game-pi-opal.vercel.app/",
     },
-    {
-      title: "HeatShield",
-      category: "Utility / Web App",
-      period: "Recent Project",
-      description: "A smart heatstroke prevention and awareness web app. Provides real-time heat risk guidance, safety tips, and an interactive dashboard to help users stay protected during extreme heat conditions.",
-      tech: ["HTML5", "CSS3", "JavaScript", "UI/UX"],
-      link: "https://github.com/Satyam2307/HeatShield",
-      liveUrl: "https://heat-shields.vercel.app/",
-    },
+  ];
+
+  const hackathonProjects = [
     {
       title: "GripLine",
-      category: "Productivity Tool",
-      period: "Recent Project",
-      description: "A focused productivity and task-management tool designed for clarity. Features clean list management, priority tagging, and a minimal interface for distraction-free workflow.",
-      tech: ["HTML5", "CSS3", "JavaScript", "Local Storage"],
+      category: "AI Track-Condition Co-Pilot",
+      period: "Grand Prix Hackathon",
+      description: "Real-time track condition co-pilot for motorsport race engineers. Features zero-shot Hugging Face CLIP classification for wetness estimation, dynamic SVG corner hazard mapping, temporal trend analysis with exponential smoothing, pit window tire strategy recommendations, and automated voice radio synthesis via Web Speech API.",
+      tech: ["FastAPI (Python)", "React 18 & TypeScript", "Hugging Face CLIP", "Vite", "Recharts", "Web Speech API"],
       link: "https://github.com/Satyam2307/GripLine",
       liveUrl: "https://grip-line.vercel.app/",
     },
     {
+      title: "HeatShield: ShadeStop",
+      category: "Climate Intelligence & Civic Tech",
+      period: "Civic Hackathon",
+      description: "Urban heat mitigation decision platform designed to protect transit riders. Integrates satellite thermal surface data, GTFS transit routes, and census vulnerability indexes into an interactive geospatial map to rank and prioritize bus stops for shade canopy installations with measurable before/after heat reduction projections.",
+      tech: ["Next.js & React", "TypeScript", "Tailwind CSS", "FastAPI (Python)", "PostgreSQL & PostGIS", "MapLibre GL / GeoJSON"],
+      link: "https://github.com/Satyam2307/HeatShield",
+      liveUrl: "https://heat-shields.vercel.app/",
+    },
+    {
       title: "Bug Sniffer",
-      category: "Developer Tool",
-      period: "Recent Project",
-      description: "A lightweight browser-based debugging helper that sniffs and visualises common UI bugs — layout overflows, missing alt text, broken links — helping developers catch issues faster during development.",
-      tech: ["JavaScript", "HTML5", "CSS3", "DOM Inspection"],
+      category: "Developer Tooling & Static Analysis",
+      period: "DevTools Hackathon",
+      description: "A full-stack developer static auditing pipeline built to detect silent production bugs in GitHub repositories. Executes fast deterministic scans for zero-byte assets and malformed XML/JSON configs, integrated with Google Gemini 2.5 Flash / Groq LLMs for AI-driven root cause explanations and repository health indexing.",
+      tech: ["React (Vite SPA)", "FastAPI (Python)", "Google Gemini API", "Groq (Llama-3)", "GitHub REST API", "Glassmorphic UI"],
       link: "https://github.com/Satyam2307/Bug-Sniffer",
       liveUrl: "https://bug-sniffer.vercel.app/",
     },
     {
-      title: "Simon Says Game",
-      category: "Interactive Game",
-      period: "Recent Project",
-      description: "A faithful recreation of the classic Simon Says memory game with progressive difficulty levels. Features animated color sequences, sound feedback, high-score tracking, and a polished retro aesthetic.",
-      tech: ["HTML5", "CSS3", "JavaScript", "Game Logic"],
-      link: "https://github.com/Satyam2307/Simon-Says-Game",
-      liveUrl: "https://simon-says-game-pi-opal.vercel.app/",
+      title: "Voyage Within",
+      category: "Immersive 3D Storytelling",
+      period: "Creative Web Experience",
+      description: "An Awwwards-inspired interactive web storytelling experience turning static scrolling into an immersive visual voyage. Built with custom 3D spatial scenes, GSAP ScrollTrigger timeline transitions, layered glassmorphism, and reactive theme exploration.",
+      tech: ["JavaScript (ES6+)", "Three.js (3D Scenes)", "GSAP & ScrollTrigger", "HTML5 / CSS3", "Glassmorphism UI"],
+      link: "https://github.com/Satyam2307/voyage-within",
+      liveUrl: "https://voyage-within.vercel.app/",
     },
   ];
 
@@ -178,11 +181,11 @@ export default function PortfolioSections() {
         {/* Card 03: Work — Projects */}
         <section className={`${styles.card} ${styles.flow}`} id="projects">
           <span className={styles.cardNum} aria-hidden="true">03</span>
-          <p className={styles.eyebrow}>Work — Projects</p>
+          <p className={styles.eyebrow}>Work — Featured Projects</p>
           <h2 className={styles.title}>Projects</h2>
           
           <div className={styles.projList}>
-            {projectsList.map((proj, idx) => (
+            {featuredProjects.map((proj, idx) => (
               <div key={idx} className={styles.proj}>
                 <div className={styles.projHead}>
                   <h3 className={styles.projCompany}>{proj.title}</h3>
@@ -231,9 +234,65 @@ export default function PortfolioSections() {
           </div>
         </section>
 
-        {/* Card 04: Contact — Conversation */}
-        <section id="contact" className={`${styles.card} ${styles.flow}`}>
+        {/* Card 04: Innovation — Hackathon Builds */}
+        <section className={`${styles.card} ${styles.flow}`} id="hackathons">
           <span className={styles.cardNum} aria-hidden="true">04</span>
+          <p className={styles.eyebrow}>Innovation — Hackathon Builds</p>
+          <h2 className={styles.title}>Hackathon Builds</h2>
+          
+          <div className={styles.projList}>
+            {hackathonProjects.map((proj, idx) => (
+              <div key={idx} className={styles.proj}>
+                <div className={styles.projHead}>
+                  <h3 className={styles.projCompany}>{proj.title}</h3>
+                  <span className={styles.projPeriod}>{proj.period}</span>
+                </div>
+                <p className={styles.projRole}>{proj.category}</p>
+                <ul className={styles.projItems}>
+                  <li>{proj.description}</li>
+                </ul>
+                <ul className={styles.pills} style={{ marginTop: "1rem" }}>
+                  {proj.tech.map((t, tIdx) => (
+                    <li key={tIdx} className={styles.pill}>
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+                <div className={styles.projLinkGroup}>
+                  <a
+                    href={proj.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={styles.projLink}
+                  >
+                    View on GitHub
+                    <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+                      <path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"></path>
+                    </svg>
+                  </a>
+                  {proj.liveUrl && (
+                    <a
+                      href={proj.liveUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={styles.projLinkLive}
+                    >
+                      Live Demo
+                      <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+                        <circle cx="12" cy="12" r="3" fill="currentColor"/>
+                        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none"/>
+                      </svg>
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Card 05: Contact — Conversation */}
+        <section id="contact" className={`${styles.card} ${styles.flow}`}>
+          <span className={styles.cardNum} aria-hidden="true">05</span>
           <p className={styles.eyebrow}>Collaboration — Reach Out</p>
           <h2 className={styles.title}>Start a Conversation</h2>
 

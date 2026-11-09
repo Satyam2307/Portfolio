@@ -100,6 +100,15 @@ export default function PortfolioSections() {
 
   const featuredProjects = [
     {
+      title: "Wanderlust",
+      category: "Full-Stack Web Application",
+      period: "MERN Stack",
+      description: "A full-stack Airbnb-inspired travel listings platform built with the MERN stack. Features user authentication, CRUD operations for property listings, interactive maps, image uploads, reviews and ratings system, and responsive design. Implements MVC architecture with RESTful APIs, server-side rendering, and MongoDB database management.",
+      tech: ["Node.js", "Express.js", "MongoDB", "EJS", "Cloudinary", "Mapbox", "Passport.js", "REST APIs"],
+      link: "https://github.com/Satyam2307/Wanderlust",
+      liveUrl: "https://wanderlust-7e2w.onrender.com/listings",
+    },
+    {
       title: "Spotify Web Player UI Clone",
       category: "Frontend Architecture & Media UI",
       period: "Web Audio UI",
@@ -130,6 +139,24 @@ export default function PortfolioSections() {
 
   const hackathonProjects = [
     {
+      title: "GuestVerify",
+      category: "Identity Verification & Guest Management",
+      period: "Amazon Developer Hackathon",
+      description: "Built for the Build, Ship, Shape: Amazon Developer Hackathon — a guest identity verification platform that streamlines the check-in and verification process. Features automated guest verification workflows, secure identity validation, and a polished user interface for managing guest access and authentication in real time.",
+      tech: ["Next.js & React", "TypeScript", "Tailwind CSS", "Vercel", "Authentication APIs", "Responsive UI"],
+      link: "https://github.com/Satyam2307/GuestVerify",
+      liveUrl: "https://guest-verify-azure.vercel.app/",
+    },
+    {
+      title: "MicroSplit AI",
+      category: "AI-Powered Expense Management",
+      period: "PayPal AI Hackathon",
+      description: "Built for the PayPal AI Hackathon — an intelligent expense splitting application that leverages AI to automate receipt parsing, smart expense categorization, and fair cost distribution among groups. Features AI-driven bill analysis, real-time split calculations, and an intuitive interface for managing shared expenses seamlessly.",
+      tech: ["Next.js & React", "TypeScript", "AI/ML Integration", "Tailwind CSS", "Vercel", "Payment APIs"],
+      link: "https://github.com/Satyam2307/MicroSplit-AI",
+      liveUrl: "https://microsplit-ai.vercel.app/",
+    },
+    {
       title: "GripLine",
       category: "AI Track-Condition Co-Pilot",
       period: "Grand Prix Hackathon",
@@ -147,24 +174,6 @@ export default function PortfolioSections() {
       link: "https://github.com/Satyam2307/HeatShield",
       liveUrl: "https://heat-shields.vercel.app/",
     },
-    {
-      title: "Bug Sniffer",
-      category: "Developer Tooling & Static Analysis",
-      period: "Ikigai Hackathon",
-      description: "Built for the Ikigai Hackathon — a full-stack developer static auditing pipeline built to detect silent production bugs in GitHub repositories. Executes fast deterministic scans for zero-byte assets and malformed XML/JSON configs, integrated with Google Gemini 2.5 Flash / Groq LLMs for AI-driven root cause explanations and repository health indexing.",
-      tech: ["React (Vite SPA)", "FastAPI (Python)", "Google Gemini API", "Groq (Llama-3)", "GitHub REST API", "Glassmorphic UI"],
-      link: "https://github.com/Satyam2307/Bug-Sniffer",
-      liveUrl: "https://bug-sniffer.vercel.app/",
-    },
-    {
-      title: "Voyage Within",
-      category: "Immersive 3D Storytelling",
-      period: "Frontend Odyssey Challenge",
-      description: "Created for the Frontend Odyssey Vibe Coding Interactive Challenge — an Awwwards-inspired interactive web storytelling experience turning static scrolling into an immersive visual voyage. Built with custom 3D spatial scenes, GSAP ScrollTrigger timeline transitions, layered glassmorphism, and reactive theme exploration.",
-      tech: ["JavaScript (ES6+)", "Three.js (3D Scenes)", "GSAP & ScrollTrigger", "HTML5 / CSS3", "Glassmorphism UI"],
-      link: "https://github.com/Satyam2307/voyage-within",
-      liveUrl: "https://voyage-within.vercel.app/",
-    },
   ];
 
   return (
@@ -176,18 +185,44 @@ export default function PortfolioSections() {
           <span className={styles.cardNum} aria-hidden="true">01</span>
           <p className={styles.eyebrow}>About — Profile</p>
           <h2 className={styles.title}>Who I Am</h2>
-          <p className={styles.lead}>
-            Aspiring Software Engineer passionate about <span className={styles.hot}>web development and UI design</span>. 
-            I focus on bridging aesthetic visual layouts with high-performance interactive engineering. 
-            I build responsive, clean user interfaces using C, Python, Java, and modern web standards. 
-            My goal is to craft digital products that blend clean, structured code with immersive, polished user experiences.
-          </p>
+          <div className={styles.lead}>
+            <p>
+              Hey! I'm Satyam, a second-year B.Tech student at{" "}
+              <span className={styles.hot}>Shri G. S. Institute of Technology and Science (SGSITS), Indore</span>,
+              pursuing Electronics and Instrumentation Engineering, and an aspiring Software Engineer with a strong focus on Full-Stack Development.
+            </p>
+            <p>
+              Although my academic background is in electronics and instrumentation, my curiosity has led me deep into the world of software engineering. I enjoy building web applications, exploring modern technologies, and transforming ideas into functional products.
+            </p>
+            <p>
+              My development journey revolves around the{" "}
+              <span className={styles.hot}>MERN stack and modern web technologies</span>.
+              I've worked with JavaScript, TypeScript, React, Next.js, Node.js, Express.js, MongoDB, and Prisma, developing applications that involve frontend interfaces, backend systems, REST APIs, database management, and authentication.
+            </p>
+            <p>
+              I'm particularly interested in building complete, end-to-end applications rather than limiting myself to a single part of the development process. Projects like <strong>MicroSplit AI</strong> and my Airbnb-inspired full-stack application have given me opportunities to explore real-world development challenges, understand application architecture, and improve my engineering approach.
+            </p>
+            <p>
+              Alongside development, I'm currently strengthening my problem-solving skills by learning{" "}
+              <span className={styles.hot}>Data Structures and Algorithms in Java</span>.
+              I believe understanding the fundamentals of programming, writing efficient code, and developing logical thinking are just as important as learning modern frameworks.
+            </p>
+            <p>
+              I'm also fascinated by Artificial Intelligence and its potential to make software more intelligent and useful. I enjoy experimenting with new ideas, participating in hackathon-oriented projects, and exploring how emerging technologies can address practical problems.
+            </p>
+            <p>
+              I consider myself a continuous learner who enjoys figuring things out, tackling challenging bugs, and building things from scratch.
+            </p>
+            <p>
+              <strong>My goal is to grow into a well-rounded Software Engineer, build products that solve meaningful problems, and continuously push the boundaries of what I can create with technology.</strong>
+            </p>
+          </div>
           <ul className={styles.pills}>
             <li className={styles.pill}>Software Engineer</li>
-            <li className={styles.pill}>Frontend Dev</li>
-            <li className={styles.pill}>UI Designer</li>
-            <li className={styles.pill}>Creative Coder</li>
+            <li className={styles.pill}>Full-Stack Dev</li>
+            <li className={styles.pill}>MERN Stack</li>
             <li className={styles.pill}>Problem Solver</li>
+            <li className={styles.pill}>Continuous Learner</li>
           </ul>
         </section>
 

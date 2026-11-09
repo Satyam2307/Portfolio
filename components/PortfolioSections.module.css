@@ -150,6 +150,14 @@
   color: hsla(35, 40%, 94%, 0.62);
 }
 
+.lead p {
+  margin: 0 0 0.9rem;
+}
+
+.lead p:last-child {
+  margin-bottom: 0;
+}
+
 .hot {
   color: #ffb066;
   font-weight: 600;

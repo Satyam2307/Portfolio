@@ -14,7 +14,7 @@ if (typeof window !== "undefined") {
 export default function PortfolioSections() {
   const containerRef = useRef(null);
 
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
   const [formStatus, setFormStatus] = useState("idle");
   const [toastMessage, setToastMessage] = useState("");
   const [copiedEmail, setCopiedEmail] = useState(false);
@@ -47,7 +47,7 @@ export default function PortfolioSections() {
 
       setFormStatus("success");
       setToastMessage("Message sent! I'll get back to you within 24 hours.");
-      setFormData({ name: "", email: "", message: "" });
+      setFormData({ name: "", email: "", phone: "", message: "" });
     } catch (err) {
       console.warn("Contact form submit error:", err);
       setFormStatus("error");
@@ -395,6 +395,22 @@ export default function PortfolioSections() {
                 Have an idea, project, or opportunity you want to collaborate on? Let's build something exceptional.
               </p>
               <div className={styles.contactLinks}>
+                <a
+                  href="https://wa.me/918251048701?text=Hi%20Satyam%2C%20I%20came%20across%20your%20portfolio%20and%20wanted%20to%20connect!"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${styles.contactLinkItem} ${styles.whatsappLink}`}
+                >
+                  <span className={styles.whatsappIcon}>
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+                      <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.53 7.33C9.33 7.33 9 7.41 8.73 7.7C8.46 8 7.7 8.71 7.7 10.16C7.7 11.61 8.76 13 8.91 13.2C9.06 13.41 10.95 16.33 13.85 17.58C14.54 17.88 15.07 18.05 15.49 18.19C16.18 18.41 16.81 18.38 17.31 18.3C17.87 18.22 19.02 17.6 19.26 16.94C19.5 16.27 19.5 15.7 19.43 15.58C19.36 15.46 19.16 15.39 18.86 15.24C18.56 15.09 17.11 14.38 16.84 14.28C16.57 14.18 16.38 14.13 16.18 14.43C15.98 14.73 15.42 15.39 15.25 15.58C15.08 15.77 14.91 15.8 14.61 15.65C14.31 15.5 13.36 15.19 12.23 14.18C11.35 13.39 10.76 12.42 10.59 12.13C10.42 11.83 10.57 11.67 10.72 11.53C10.86 11.39 11.03 11.16 11.18 10.99C11.33 10.82 11.38 10.69 11.48 10.49C11.58 10.29 11.53 10.12 11.46 9.97C11.38 9.82 10.8 8.38 10.56 7.8C10.33 7.23 10.09 7.31 9.91 7.32C9.75 7.33 9.55 7.33 9.35 7.33" />
+                    </svg>
+                  </span>
+                  <div className={styles.contactLinkContent}>
+                    <span className={styles.contactLinkLabel}>WhatsApp</span>
+                    <span className={styles.contactLinkValue}>+91 8251048701</span>
+                  </div>
+                </a>
                 <a href="mailto:chaurasiasatyam05@gmail.com" className={styles.contactLinkItem}>
                   <span className={styles.linkIcon}>✉</span>
                   <span>chaurasiasatyam05@gmail.com</span>
@@ -444,12 +460,23 @@ export default function PortfolioSections() {
                 />
               </div>
               <div className={styles.inputGroup}>
+                <label htmlFor="phone">Phone / WhatsApp Number</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  placeholder="+91 82510 48701"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  disabled={formStatus === "submitting"}
+                />
+              </div>
+              <div className={styles.inputGroup}>
                 <label htmlFor="message">Message</label>
                 <textarea
                   id="message"
                   rows="5"
                   required
-                  placeholder="Let's build a cinematic project..."
+                  placeholder="Let's build something exceptional..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   disabled={formStatus === "submitting"}
@@ -486,7 +513,9 @@ export default function PortfolioSections() {
                   <a
                     href={`mailto:chaurasiasatyam05@gmail.com?subject=Portfolio%20Inquiry%20from%20${encodeURIComponent(
                       formData.name || "Visitor"
-                    )}&body=${encodeURIComponent(formData.message || "")}`}
+                    )}&body=${encodeURIComponent(
+                      (formData.phone ? `Phone: ${formData.phone}\n\n` : "") + (formData.message || "")
+                    )}`}
                     className={styles.errorAction}
                   >
                     Send directly via your email app →

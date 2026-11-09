@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(request) {
   try {
-    const { name, email, message } = await request.json();
+    const { name, email, phone, message } = await request.json();
 
     if (!name || !email || !message) {
       return NextResponse.json(
@@ -24,8 +24,9 @@ export async function POST(request) {
           access_key: accessKey,
           name,
           email,
+          phone: phone || "Not provided",
           message,
-          subject: `Portfolio Inquiry from ${name}`,
+          subject: `Portfolio Inquiry from ${name}${phone ? ` (${phone})` : ""}`,
           from_name: "Satyam Chaurasia Portfolio",
         }),
       });
@@ -40,6 +41,7 @@ export async function POST(request) {
       console.log("-----------------------------------------");
       console.log("📩 NEW PORTFOLIO CONTACT MESSAGE RECEIVED:");
       console.log("From:", name, `<${email}>`);
+      if (phone) console.log("Phone:", phone);
       console.log("Message:", message);
       console.log("Target recipient: chaurasiasatyam05@gmail.com");
       console.log("-----------------------------------------");

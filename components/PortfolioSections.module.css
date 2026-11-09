@@ -412,6 +412,46 @@
   transform: translateX(4px);
 }
 
+.whatsappLink {
+  border-color: rgba(37, 211, 102, 0.28);
+  background: rgba(37, 211, 102, 0.05);
+}
+
+.whatsappLink:hover {
+  background: rgba(37, 211, 102, 0.12);
+  border-color: rgba(37, 211, 102, 0.55);
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.16);
+}
+
+.whatsappIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #25d366;
+  flex-shrink: 0;
+}
+
+.contactLinkContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+}
+
+.contactLinkLabel {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #25d366;
+  font-weight: 700;
+}
+
+.contactLinkValue {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #f6f1ea;
+  letter-spacing: 0.02em;
+}
+
 .linkIcon {
   font-size: 1.1rem;
   color: #ff7a18;

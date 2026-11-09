@@ -10,16 +10,10 @@ export default function Page() {
       <SpideyWidgets />
       <VideoIntro
         videoSrc="/videos/portfolio_video.mp4"
-        tagline="Aspiring Full-Stack Software Engineer"
+        role="Aspiring Full-Stack Software Engineer"
+        skills={["Full-Stack Dev", "MERN Stack", "Next.js", "TypeScript", "Java (DSA)"]}
         firstName="Satyam"
         lastName="Chaurasia"
-        subtitle={
-          <>
-            Passionate about <strong>full-stack development and modern web technologies</strong>. Building 
-            end-to-end applications with the MERN stack, crafting everything from frontend interfaces 
-            to backend systems and APIs.
-          </>
-        }
         nextSectionId="about"
       />
 

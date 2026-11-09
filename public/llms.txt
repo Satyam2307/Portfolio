@@ -1,0 +1,42 @@
+# Satyam Chaurasia — Full-Stack Software Engineer
+
+> Second-year B.Tech student in Electronics and Instrumentation Engineering at Shri G. S. Institute of Technology and Science (SGSITS), Indore. Full-Stack Developer specializing in the MERN stack, Next.js, Java DSA, and AI-driven web systems.
+
+## Core Technical Skills
+- **Languages:** JavaScript (ES6+), TypeScript, Java (Data Structures & Algorithms), Python, C
+- **Frontend:** React.js, Next.js (App Router), Tailwind CSS, HTML5, CSS3, GSAP
+- **Backend & APIs:** Node.js, Express.js, FastAPI (Python), RESTful APIs, Passport.js Authentication
+- **Databases & Cloud:** MongoDB, PostgreSQL & PostGIS, Git & GitHub, Vercel, Render, Mapbox, Cloudinary
+
+## Featured Projects
+- **Wanderlust:** Full-stack Airbnb-inspired travel listings platform built with the MERN stack. Features user authentication, CRUD operations, interactive maps, and reviews.
+  - Live: https://wanderlust-7e2w.onrender.com/listings
+  - Code: https://github.com/Satyam2307/Wanderlust
+- **Spotify Web Player UI Clone:** High-fidelity web player recreating Spotify's responsive desktop audio UI.
+  - Live: https://spotify-web-player-ui-clone.vercel.app/
+  - Code: https://github.com/Satyam2307/Spotify-Web-Player-UI-Clone
+- **Sidebar Navigation Menu:** Accessible drawer navigation with fluid CSS transitions.
+  - Live: https://sidebar-navigation-menu-nine.vercel.app/
+  - Code: https://github.com/Satyam2307/Sidebar-Navigation-Menu
+- **Simon Says Game:** Interactive memory game with Web Audio API sound cues and game state machine.
+  - Live: https://simon-says-game-pi-opal.vercel.app/
+  - Code: https://github.com/Satyam2307/Simon-Says-Game
+
+## Hackathon Builds
+- **GuestVerify (Amazon Developer Hackathon):** Identity verification & guest check-in automation platform.
+  - Live: https://guest-verify-azure.vercel.app/
+  - Code: https://github.com/Satyam2307/GuestVerify
+- **MicroSplit AI (PayPal AI Hackathon):** Smart group expense splitting application with AI receipt analysis.
+  - Live: https://microsplit-ai.vercel.app/
+  - Code: https://github.com/Satyam2307/MicroSplit-AI
+- **GripLine (Grand Prix Hackathon):** Real-time track condition co-pilot with zero-shot CLIP classification and audio synthesis.
+  - Live: https://grip-line.vercel.app/
+  - Code: https://github.com/Satyam2307/GripLine
+- **HeatShield: ShadeStop (FortyGuard Hackathon):** Geospatial climate intelligence platform ranking bus stops for heat mitigation.
+  - Live: https://heat-shields.vercel.app/
+  - Code: https://github.com/Satyam2307/HeatShield
+
+## Contact & Profiles
+- **Email:** chaurasiasatyam05@gmail.com
+- **GitHub:** https://github.com/Satyam2307
+- **LinkedIn:** https://www.linkedin.com/in/satyam-chaurasia-6021b23aa/

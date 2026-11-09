@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffb066"/>
+      <stop offset="100%" stop-color="#ff7a18"/>
+    </linearGradient>
+    <radialGradient id="bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1b1222"/>
+      <stop offset="100%" stop-color="#07060a"/>
+    </radialGradient>
+  </defs>
+  <rect width="100" height="100" rx="24" fill="url(#bg)"/>
+  <rect width="98" height="98" x="1" y="1" rx="23" fill="none" stroke="url(#grad)" stroke-width="2" stroke-opacity="0.5"/>
+  <!-- Stylized Spider Monogram / S -->
+  <path d="M 62 30 C 58 24, 42 24, 38 31 C 35 36, 38 43, 50 46 C 64 50, 66 58, 62 65 C 57 73, 40 73, 34 66" fill="none" stroke="url(#grad)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="50" cy="50" r="3" fill="#ffb066"/>
+</svg>

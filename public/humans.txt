@@ -1,0 +1,13 @@
+/* TEAM */
+Developer: Satyam Chaurasia
+Role: Full-Stack Software Engineer
+College: Shri G. S. Institute of Technology and Science (SGSITS), Indore
+Contact: chaurasiasatyam05@gmail.com
+GitHub: https://github.com/Satyam2307
+LinkedIn: https://www.linkedin.com/in/satyam-chaurasia-6021b23aa/
+
+/* SITE */
+Standards: HTML5, CSS3, ES6+, Next.js 14, React 18, GSAP
+Components: React App Router, Modular CSS
+Optimization: Vercel CDN, SVG Icons, Responsive Glassmorphism
+Last update: 2026

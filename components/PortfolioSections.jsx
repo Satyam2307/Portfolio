@@ -187,42 +187,25 @@ export default function PortfolioSections() {
           <h2 className={styles.title}>Who I Am</h2>
           <div className={styles.lead}>
             <p>
-              Hey! I'm Satyam, a second-year B.Tech student at{" "}
-              <span className={styles.hot}>Shri G. S. Institute of Technology and Science (SGSITS), Indore</span>,
-              pursuing Electronics and Instrumentation Engineering, and an aspiring Software Engineer with a strong focus on Full-Stack Development.
+              I'm a second-year B.Tech student at{" "}
+              <span className={styles.hot}>SGSITS, Indore</span> (Electronics & Instrumentation) and an aspiring{" "}
+              <span className={styles.hot}>Full-Stack Software Engineer</span>. Driven by deep curiosity for software architecture and modern web systems, I enjoy transforming ideas into functional, scalable products.
             </p>
             <p>
-              Although my academic background is in electronics and instrumentation, my curiosity has led me deep into the world of software engineering. I enjoy building web applications, exploring modern technologies, and transforming ideas into functional products.
+              My development journey is centered around the{" "}
+              <span className={styles.hot}>MERN stack and modern web technologies</span>. I build complete end-to-end applications across frontend interfaces, backend services, RESTful APIs, and database design — through projects like <strong>Wanderlust</strong> and <strong>MicroSplit AI</strong>.
             </p>
             <p>
-              My development journey revolves around the{" "}
-              <span className={styles.hot}>MERN stack and modern web technologies</span>.
-              I've worked with JavaScript, TypeScript, React, Next.js, Node.js, Express.js, MongoDB, and Prisma, developing applications that involve frontend interfaces, backend systems, REST APIs, database management, and authentication.
-            </p>
-            <p>
-              I'm particularly interested in building complete, end-to-end applications rather than limiting myself to a single part of the development process. Projects like <strong>MicroSplit AI</strong> and my Airbnb-inspired full-stack application have given me opportunities to explore real-world development challenges, understand application architecture, and improve my engineering approach.
-            </p>
-            <p>
-              Alongside development, I'm currently strengthening my problem-solving skills by learning{" "}
-              <span className={styles.hot}>Data Structures and Algorithms in Java</span>.
-              I believe understanding the fundamentals of programming, writing efficient code, and developing logical thinking are just as important as learning modern frameworks.
-            </p>
-            <p>
-              I'm also fascinated by Artificial Intelligence and its potential to make software more intelligent and useful. I enjoy experimenting with new ideas, participating in hackathon-oriented projects, and exploring how emerging technologies can address practical problems.
-            </p>
-            <p>
-              I consider myself a continuous learner who enjoys figuring things out, tackling challenging bugs, and building things from scratch.
-            </p>
-            <p>
-              <strong>My goal is to grow into a well-rounded Software Engineer, build products that solve meaningful problems, and continuously push the boundaries of what I can create with technology.</strong>
+              Alongside engineering full-stack applications and experimenting in AI hackathons, I continuously strengthen my problem-solving core through{" "}
+              <span className={styles.hot}>Data Structures and Algorithms in Java</span>, focusing on writing clean, efficient, and well-architected code.
             </p>
           </div>
           <ul className={styles.pills}>
-            <li className={styles.pill}>Software Engineer</li>
-            <li className={styles.pill}>Full-Stack Dev</li>
+            <li className={styles.pill}>Full-Stack Developer</li>
             <li className={styles.pill}>MERN Stack</li>
-            <li className={styles.pill}>Problem Solver</li>
-            <li className={styles.pill}>Continuous Learner</li>
+            <li className={styles.pill}>DSA in Java</li>
+            <li className={styles.pill}>AI Hackathons</li>
+            <li className={styles.pill}>SGSITS Indore</li>
           </ul>
         </section>
 
@@ -233,41 +216,47 @@ export default function PortfolioSections() {
           <h2 className={styles.title}>Technical Skills</h2>
           <div className={styles.skillGrid}>
             <div className={styles.skillGroup}>
-              <p className={styles.skillLabel}>Languages</p>
+              <p className={styles.skillLabel}>Languages & Core</p>
               <ul className={styles.pills}>
-                <li className={styles.pill}>Java</li>
-                <li className={styles.pill}>C Language</li>
+                <li className={styles.pill}>JavaScript (ES6+)</li>
+                <li className={styles.pill}>TypeScript</li>
+                <li className={styles.pill}>Java (DSA)</li>
                 <li className={styles.pill}>Python</li>
-                <li className={styles.pill}>JavaScript</li>
+                <li className={styles.pill}>C Language</li>
               </ul>
             </div>
             
             <div className={styles.skillGroup}>
-              <p className={styles.skillLabel}>Web & Structure</p>
+              <p className={styles.skillLabel}>Frontend & UI</p>
               <ul className={styles.pills}>
-                <li className={styles.pill}>HTML5</li>
-                <li className={styles.pill}>CSS3</li>
-                <li className={styles.pill}>ES6+ JavaScript</li>
-              </ul>
-            </div>
-
-            <div className={styles.skillGroup}>
-              <p className={styles.skillLabel}>Styling & Animation</p>
-              <ul className={styles.pills}>
+                <li className={styles.pill}>React.js</li>
+                <li className={styles.pill}>Next.js</li>
+                <li className={styles.pill}>Tailwind CSS</li>
+                <li className={styles.pill}>HTML5 & CSS3</li>
                 <li className={styles.pill}>Modern Flexbox / Grid</li>
-                <li className={styles.pill}>CSS Modules</li>
-                <li className={styles.pill}>GSAP</li>
-                <li className={styles.pill}>Transitions & Keyframes</li>
+                <li className={styles.pill}>GSAP & Animations</li>
               </ul>
             </div>
 
             <div className={styles.skillGroup}>
-              <p className={styles.skillLabel}>Tools & Ecosystem</p>
+              <p className={styles.skillLabel}>Backend & APIs</p>
               <ul className={styles.pills}>
+                <li className={styles.pill}>Node.js</li>
+                <li className={styles.pill}>Express.js</li>
+                <li className={styles.pill}>FastAPI (Python)</li>
+                <li className={styles.pill}>RESTful APIs</li>
+                <li className={styles.pill}>Authentication & Passport.js</li>
+              </ul>
+            </div>
+
+            <div className={styles.skillGroup}>
+              <p className={styles.skillLabel}>Databases & Cloud Tools</p>
+              <ul className={styles.pills}>
+                <li className={styles.pill}>MongoDB</li>
+                <li className={styles.pill}>PostgreSQL & PostGIS</li>
                 <li className={styles.pill}>Git & GitHub</li>
-                <li className={styles.pill}>VS Code</li>
-                <li className={styles.pill}>npm / Node Package Manager</li>
-                <li className={styles.pill}>Next.js / React</li>
+                <li className={styles.pill}>Vercel & Render</li>
+                <li className={styles.pill}>Mapbox & Cloudinary</li>
               </ul>
             </div>
           </div>

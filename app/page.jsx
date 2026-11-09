@@ -10,14 +10,14 @@ export default function Page() {
       <SpideyWidgets />
       <VideoIntro
         videoSrc="/videos/portfolio_video.mp4"
-        tagline="Aspiring Software Engineer"
+        tagline="Aspiring Full-Stack Software Engineer"
         firstName="Satyam"
         lastName="Chaurasia"
         subtitle={
           <>
-            Passionate about <strong>web development and UI design</strong>. Crafting 
-            interactive, responsive, and cinematic digital products that blend solid engineering 
-            with visual aesthetics.
+            Passionate about <strong>full-stack development and modern web technologies</strong>. Building 
+            end-to-end applications with the MERN stack, crafting everything from frontend interfaces 
+            to backend systems and APIs.
           </>
         }
         nextSectionId="about"
